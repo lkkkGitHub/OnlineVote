@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.UserDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="pojo.User">
+        <result column="userId" property="userId"/>
+        <result column="userName" property="userName"/>
+        <result column="userSex" property="userSex"/>
+        <result column="userAge" property="userAge"/>
+        <result column="userLoginId" property="userLoginId"/>
+        <result column="userLoginPwd" property="userLoginPwd"/>
+    </resultMap>
+
+</mapper>
+
