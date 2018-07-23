@@ -11,5 +11,9 @@
         <result column="userLoginPwd" property="userLoginPwd"/>
     </resultMap>
 
+    <!--根据用户账号查询用户信息-->
+    <select id="login" parameterType="java.lang.String" resultMap="AllColumnMap">
+        select * from tb_user where userLoginId = #{values}
+    </select>
 </mapper>
 
