@@ -120,4 +120,15 @@ public class UserController {
             return new ModelAndView("login");
         }
     }
+
+    /**
+     * 注销登陆，删除session中存储的信息
+     * @param request 获取session对象
+     * @return 返回到主页面
+     */
+    @RequestMapping("/exit")
+    public ModelAndView exit(HttpServletRequest request) {
+        request.getSession().removeAttribute("sessionAccount");
+        return new ModelAndView("index");
+    }
 }
