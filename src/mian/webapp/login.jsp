@@ -91,7 +91,7 @@
                        onmouseout="this.className='submitbutton';" style="color: White;" type="submit">
                 <span style="color: red; line-height: 28px;">
                         </span>
-                <a href="https://www.wjx.cn/register/register.aspx?type=1" id="hrefRegister" title="只需２０秒，就可完成注册"
+                <a href="register.jsp" id="hrefRegister" title="只需２０秒，就可完成注册"
                    class="register-now">立即注册</a>
                 <div class="third-party-login">
                     <div class="third-party-txt">
