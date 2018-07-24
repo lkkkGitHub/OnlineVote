@@ -12,4 +12,11 @@ public interface UserDao {
      * @return 返回一个封装了用户信息的用户类
      */
     User login(String userLoginId);
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+    int register(User user);
 }

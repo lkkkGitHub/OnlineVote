@@ -3,6 +3,8 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +15,10 @@ import tools.DrawPictures;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author lk
@@ -27,6 +33,15 @@ public class UserController {
      */
     @Autowired
     private UserService userService;
+
+//    /**
+//     * 将客户端空白输入传入""转为null
+//     * @param binder 不知道
+//     */
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+//    }
 
     /**
      * 生成图片验证码，传入到页面，同时添加到session中
@@ -66,58 +81,134 @@ public class UserController {
      * message==0即账号错误，msg返回“账号未注册”信息；==1密码错误，msg返回“密码错误”信息；==2信息正确,不返回；
      * 不管账号、密码的正确与否,都会将账号信息存入cookie中，以便下次登陆；同时用户点击了下次自动登陆，即记住正确的密码到cookie中，
      * 账号密码正确时即传入到session中，利用session来存储用户的账号信息
-     * @param userLoginId 用户输入账号id
+     *
+     * @param userLoginId  用户输入账号id
      * @param userLoginPwd 用户输入账号密码
-     * @param model 返回错误信息
-     * @param rememberMe 记住密码按钮确认框
-     * @param checkCode 用户输入图片验证码
-     * @param response 将账号密码存入cookie中，方便用户输入信息；
-     * @param request 获取session对象中的验证码，以及将正确的账号信息存入session中
+     * @param model        返回错误信息
+     * @param rememberMe   记住密码按钮确认框
+     * @param checkCode    用户输入图片验证码
+     * @param response     将账号密码存入cookie中，方便用户输入信息；
+     * @param request      获取session对象中的验证码，以及将正确的账号信息存入session中
+     * @param user         lk
+     * @param result       lk
      * @return 返回到页面中
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public ModelAndView login(String userLoginId, String userLoginPwd,
+    public ModelAndView login(@Valid User user, BindingResult result,
+                              String userLoginId, String userLoginPwd,
                               Model model, String rememberMe, String checkCode,
                               HttpServletResponse response, HttpServletRequest request) {
-        //msg将错误信息反馈给登陆界面
-        String msg;
-        //将cookie值存在时间设置为20s是为了之后测试方便
-        final int maxTimeCookie = 20;
-        Cookie cookieId = new Cookie("cookieId", userLoginId);
-        Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
-        cookieId.setMaxAge(maxTimeCookie);
-        cookiePwd.setMaxAge(maxTimeCookie);
-        if ((checkCode.toUpperCase()).equals(request.getSession().getAttribute("SessionPictures"))) {
-            //从controller传入到service中，service根据查询到的信息进行赋值,带回信息返回给controller处理
-            StringBuffer message = new StringBuffer();
-            User user = userService.login(userLoginId, userLoginPwd, message);
-            response.addCookie(cookieId);
-            if (user == null) {
-                if (message.toString().equals("0")) {
-                    msg = "账号未注册";
-                    model.addAttribute("msgId", msg);
-                    return new ModelAndView("login");
-                } else {
-                    msg = "密码错误";
-                    model.addAttribute("msgPwd", msg);
-                    return new ModelAndView("login");
-                }
-            } else {
-                //将用户账号信息存入session中，方便之后通过session来调用用户信息
-                request.getSession().setAttribute("sessionAccount", user);
-                if ("yes".equals(rememberMe)) {
-                    response.addCookie(cookiePwd);
-                }
-                return new ModelAndView("index");
-            }
-        } else if (checkCode == "") {
-            msg = "请输入验证码";
-            model.addAttribute("msgCode", msg);
-            return new ModelAndView("login");
+
+        if (result.hasErrors()) {
+            result.getFieldError().getDefaultMessage();
+            return new ModelAndView("register");
         } else {
-            msg = "验证码错误";
-            model.addAttribute("msgCode", msg);
-            return new ModelAndView("login");
+            //msg将错误信息反馈给登陆界面
+            String msg;
+            //将cookie值存在时间设置为20s是为了之后测试方便
+            final int maxTimeCookie = 20;
+            Cookie cookieId = new Cookie("cookieId", userLoginId);
+            Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
+            cookieId.setMaxAge(maxTimeCookie);
+            cookiePwd.setMaxAge(maxTimeCookie);
+            if ((checkCode.toUpperCase()).equals(request.getSession().getAttribute("SessionPictures"))) {
+                //从controller传入到service中，service根据查询到的信息进行赋值,带回信息返回给controller处理
+                StringBuffer message = new StringBuffer();
+                User user1 = userService.login(userLoginId, userLoginPwd, message);
+                response.addCookie(cookieId);
+                if (user1 == null) {
+                    if (message.toString().equals("0")) {
+                        msg = "账号未注册";
+                        model.addAttribute("msgId", msg);
+                        return new ModelAndView("login");
+                    } else {
+                        msg = "密码错误";
+                        model.addAttribute("msgPwd", msg);
+                        return new ModelAndView("login");
+                    }
+                } else {
+                    //将用户账号信息存入session中，方便之后通过session来调用用户信息
+                    request.getSession().setAttribute("sessionAccount", user1);
+                    if ("yes".equals(rememberMe)) {
+                        response.addCookie(cookiePwd);
+                    }
+                    return new ModelAndView("index");
+                }
+            } else if (checkCode == "") {
+                msg = "请输入验证码";
+                model.addAttribute("msgCode", msg);
+                return new ModelAndView("login");
+            } else {
+                msg = "验证码错误";
+                model.addAttribute("msgCode", msg);
+                return new ModelAndView("login");
+            }
         }
     }
+
+    /**
+     * 注销登陆，删除session中存储的信息
+     *
+     * @param request 获取session对象
+     * @return 返回到主页面
+     */
+    @RequestMapping("/exit")
+    public ModelAndView exit(HttpServletRequest request) {
+        request.getSession().removeAttribute("sessionAccount");
+        return new ModelAndView("index");
+    }
+
+    /**
+     * 用户注册，用户从页面输入账号，密码，以及确认密码；后台先通过jsr303效验判断输入的数据是否合法，
+     * 不合法即将错误信息输入到注册界面，提示用户修改；
+     * 合法即进行账号验证，判断账号是否被注册，被注册即跳转到注册界面提示用户该账号已经被注册；
+     * 未被注册即判断用户两次输入的密码是否相同，相同即跳转到注册的dao中，进行注册；
+     * 不相同即返回到注册界面，并提示用户输入密码不一致，重新输入密码；
+     * 同时根据dao接口中返回的数值判断信息是否插入成功，插入成功即跳转到成功界面；失败跳到失败界面
+     *
+     * @param user                封装了用户输入的账号密码信息
+     * @param bindingResult       jsr303判断用户输入数据时候合法，获取不合法错误
+     * @param userLoginPwdConfirm 用户输入的确认密码，判断两次密码输入是否相同
+     * @param model 带回错误信息
+     * @return 根据判断，返回到不同界面
+     */
+    @RequestMapping("/register")
+    public ModelAndView register(@Valid User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model) {
+        String msg;
+        if (bindingResult.hasErrors()) {
+            Map<String, Object> map = new HashMap<>();
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            for (FieldError fieldError : errors) {
+                System.out.println("错误的字段名：" + fieldError.getField());
+                System.out.println("错误信息：" + fieldError.getDefaultMessage());
+                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            //输入数据中有不合法的字符
+            return new ModelAndView("register", map);
+        } else {
+            int confirm = userService.registerConfirm(user.getUserLoginId());
+            if (confirm == 0) {
+                if (user.getUserLoginPwd().equals(userLoginPwdConfirm)) {
+                    int type = userService.register(user);
+                    if (type == 1) {
+                        //返回注册成功界面
+                        return new ModelAndView("index");
+                    } else {
+                        //注册失败，返回重新注册
+                        return new ModelAndView("register");
+                    }
+                } else {
+                    msg = "密码不一致，请重新输入";
+                    model.addAttribute("msgPwdConfirm", msg);
+                    return new ModelAndView("register");
+                }
+            } else {
+                //账号已经被注册
+                msg = "账号已经被注册";
+                model.addAttribute("msgId", msg);
+                return new ModelAndView("register");
+            }
+        }
+    }
+
 }

@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/register.css" media="all">
 </head>
 <body class="fp-viewing">
-<form name="form" method="post" action="https://www.wjx.cn/register/register.aspx?type=1" id="form">
+<form name="form" method="post" action="user/register" id="form">
     <div>
         <input name="__VIEWSTATE" id="__VIEWSTATE"
                value="/wEPDwUKLTY4MjQzOTU3Mw8WAh4TVmFsaWRhdGVSZXF1ZXN0TW9kZQIBFgICAw9kFgICBA9kFgQCAg9kFgICAQ8PFgIeBFRleHQFCemXruWNt+aYn2RkAgQPZBYMAgMPD2QWAh4FdmFsdWVlZAIFDxYCHgdWaXNpYmxlaBYCAgEPD2QWAh8CZWQCBw8WAh8DaGQCCQ8WAh8DZxYCAgMPFgIfA2hkAg0PFgIfA2hkAg8PFgIfA2gWAgIBDxAPFgIeB0NoZWNrZWRnZGRkZGQhkRIkpWEkDpfJDGT7xckV2G5k+Q=="
@@ -31,9 +31,9 @@
                 <img src="images/logo.png" alt="问卷星_不止问卷调查/在线考试">
             </a>
             <div class="member pull-right">
-                <a href="https://www.wjx.cn/login.aspx" class="btn btn-default btn-lg pull-left login " rel="nofollow">登录</a>
+                <a href="user/login" class="btn btn-default btn-lg pull-left login " rel="nofollow">登录</a>
                 <a href="#" class="btn btn-default btn-lg pull-left register hidden" rel="nofollow">注册</a>
-                <a href="https://www.wjx.cn/" class="btn btn-default btn-lg pull-left back-wjx">返回首页</a>
+                <a href="index.jsp" class="btn btn-default btn-lg pull-left back-wjx">返回首页</a>
             </div>
         </div>
         <div class="fullpage-main"></div>
@@ -65,7 +65,7 @@
                         <ul>
                             <li>
                                 <label for="register-user-name" class="icon user-icon"></label>
-                                <input value="" name="Register1$UserName" maxlength="50" id="Register1_UserName"
+                                <input value="" name="userLoginId" maxlength="50" id="Register1_UserName"
                                        class="validate-input user-name" placeholder="支持英文与数字，注册后不能修改" type="text">
                                 <label for="register-user-name" style="display: none;" id="divUserNamePromptInfo"
                                        class="error blue">支持英文与数字，注册后不能修改</label>
@@ -76,7 +76,7 @@
                             </li>
                             <li>
                                 <label for="register-password" class="icon password-icon"></label>
-                                <input name="Register1$Password" maxlength="20" id="Register1_Password"
+                                <input name="userLoginPwd" maxlength="20" id="Register1_Password"
                                        class="validate-input" placeholder="6~20位字母、数字或特殊符号" value="" type="password">
                                 <label style="display: none;" id="divPasswordPromptInfo" for="register-password"
                                        class="error blue">6~20位字母、数字或特殊符号。</label>
@@ -85,15 +85,25 @@
                                 <label style="display: none;" id="divPasswordRightInfo" for="register-password"
                                        class="error green">密码设置成功</label>
                             </li>
-
+                            <li>
+                                <label for="register-password" class="icon password-icon"></label>
+                                <input name="userLoginPwdConfirm" maxlength="20" id="Register1_Password"
+                                       class="validate-input" placeholder="确认密码" value="" type="password">
+                                <label style="display: none;" id="divPasswordPromptInfo" for="register-password"
+                                       class="error blue">6~20位字母、数字或特殊符号。</label>
+                                <label style="display: none;" id="divPasswordErrorInfo" for="register-password"
+                                       class="error red">密码长度要在6-20个字符之间</label>
+                                <label style="display: none;" id="divPasswordRightInfo" for="register-password"
+                                       class="error green">密码设置成功</label>
+                            </li>
 
                             <li id="Register1_liMobile" style="text-align: left;">
 
-                                <label for="mobile-number" class="icon mobile-icon"></label>
-                                <input value="" name="Register1$txtMobile" maxlength="11" id="Register1_txtMobile"
-                                       class="validate-input" placeholder="可通过手机号登录问卷星" type="text">
+                                <%--<label for="mobile-number" class="icon mobile-icon"></label>--%>
+                                <%--<input value="" name="Register1$txtMobile" maxlength="11" id="Register1_txtMobile"--%>
+                                       <%--class="validate-input" placeholder="可通过手机号登录问卷星" type="text">--%>
 
-                                <input name="Register1$hfField" id="Register1_hfField" type="hidden">
+                                <%--<input name="Register1$hfField" id="Register1_hfField" type="hidden">--%>
 
                                 <div id="Register1_divGeeTest" style="padding-top: 15px; width: 400px;">
                                     <div id="captcha"></div>
