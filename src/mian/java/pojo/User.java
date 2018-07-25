@@ -1,8 +1,7 @@
 package pojo;
 
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import javax.validation.constraints.NotEmpty;
 
 /**
  * 用户类
