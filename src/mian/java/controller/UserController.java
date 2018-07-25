@@ -105,7 +105,7 @@ public class UserController {
             //msg将错误信息反馈给登陆界面
             String msg;
             //将cookie值存在时间设置为20s是为了之后测试方便
-            final int maxTimeCookie = 200;
+            final int maxTimeCookie = 20;
             Cookie cookieId = new Cookie("cookieId", userLoginId);
             Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
             cookieId.setMaxAge(maxTimeCookie);
@@ -169,10 +169,12 @@ public class UserController {
      * @param bindingResult       jsr303判断用户输入数据时候合法，获取不合法错误
      * @param userLoginPwdConfirm 用户输入的确认密码，判断两次密码输入是否相同
      * @param model               带回错误信息
+     * @param response 将用户输入的信息存到cookie传入到客户端中
      * @return 根据判断，返回到不同界面
      */
     @RequestMapping("/register")
-    public ModelAndView register(@Valid User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model) {
+    public ModelAndView register(@Valid User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model,
+                                 HttpServletResponse response) {
         String msg;
         if (bindingResult.hasErrors()) {
             Map<String, Object> map = new HashMap<>();
@@ -185,7 +187,17 @@ public class UserController {
             //输入数据中有不合法的字符
             return new ModelAndView("register", map);
         } else {
-
+            //cookie在服务器中存储的时间 20表示测试
+            final int maxCookieAge = 20;
+            Cookie cookieId = new Cookie("registerCookieId", user.getUserLoginId());
+            Cookie cookiePwd = new Cookie("registerCookiePwd", user.getUserLoginPwd());
+            Cookie cookieConPwd = new Cookie("registerCookieConPwd", userLoginPwdConfirm);
+            cookieConPwd.setMaxAge(maxCookieAge);
+            cookieId.setMaxAge(maxCookieAge);
+            cookiePwd.setMaxAge(maxCookieAge);
+            response.addCookie(cookieId);
+            response.addCookie(cookiePwd);
+            response.addCookie(cookieConPwd);
             int confirm = userService.registerConfirm(user.getUserLoginId());
             if (confirm == 0) {
                 if (user.getUserLoginPwd().equals(userLoginPwdConfirm)) {
