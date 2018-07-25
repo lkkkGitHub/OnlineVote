@@ -95,9 +95,9 @@ public class UserController {
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
     public String login(@Valid User user, BindingResult result,
-                              String userLoginId, String userLoginPwd,
-                              Model model, String rememberMe, String checkCode,
-                              HttpServletResponse response, HttpServletRequest request) {
+                        String userLoginId, String userLoginPwd,
+                        Model model, String rememberMe, String checkCode,
+                        HttpServletResponse response, HttpServletRequest request) {
         if (result.hasErrors()) {
             result.getFieldError().getDefaultMessage();
             return "register";
@@ -169,7 +169,7 @@ public class UserController {
      * @param bindingResult       jsr303判断用户输入数据时候合法，获取不合法错误
      * @param userLoginPwdConfirm 用户输入的确认密码，判断两次密码输入是否相同
      * @param model               带回错误信息
-     * @param response 将用户输入的信息存到cookie传入到客户端中
+     * @param response            将用户输入的信息存到cookie传入到客户端中
      * @return 根据判断，返回到不同界面
      */
     @RequestMapping("/register")
