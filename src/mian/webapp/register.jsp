@@ -65,8 +65,9 @@
                         <ul>
                             <li>
                                 <label for="register-user-name" class="icon user-icon"></label>
-                                <input value="" name="userLoginId" maxlength="50" id="Register1_UserName"
+                                <input value="${cookie.cookieId.value}" name="userLoginId" maxlength="50" id="Register1_UserName"
                                        class="validate-input user-name" placeholder="支持英文与数字，注册后不能修改" type="text">
+                                <span class="mb-4" style="color: red">${msgId}</span>
                                 <label for="register-user-name" style="display: none;" id="divUserNamePromptInfo"
                                        class="error blue">支持英文与数字，注册后不能修改</label>
                                 <label for="register-user-name" style="display: none;" id="divUserNameErrorInfo"
@@ -76,7 +77,7 @@
                             </li>
                             <li>
                                 <label for="register-password" class="icon password-icon"></label>
-                                <input name="userLoginPwd" maxlength="20" id="Register1_Password"
+                                <input value="${cookie.cookiePwd.value}" name="userLoginPwd" maxlength="20" id="Register1_Password"
                                        class="validate-input" placeholder="6~20位字母、数字或特殊符号" value="" type="password">
                                 <label style="display: none;" id="divPasswordPromptInfo" for="register-password"
                                        class="error blue">6~20位字母、数字或特殊符号。</label>
@@ -89,6 +90,7 @@
                                 <label for="register-password" class="icon password-icon"></label>
                                 <input name="userLoginPwdConfirm" maxlength="20" id="Register1_Password"
                                        class="validate-input" placeholder="确认密码" value="" type="password">
+                                <span class="mb-4" style="color: red">${msgPwdConfirm}</span>
                                 <label style="display: none;" id="divPasswordPromptInfo" for="register-password"
                                        class="error blue">6~20位字母、数字或特殊符号。</label>
                                 <label style="display: none;" id="divPasswordErrorInfo" for="register-password"

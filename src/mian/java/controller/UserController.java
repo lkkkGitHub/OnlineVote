@@ -89,24 +89,23 @@ public class UserController {
      * @param checkCode    用户输入图片验证码
      * @param response     将账号密码存入cookie中，方便用户输入信息；
      * @param request      获取session对象中的验证码，以及将正确的账号信息存入session中
-     * @param user         lk
-     * @param result       lk
+     * @param user         封装了用户页面输入的账号数据
+     * @param result       获取失败的信息
      * @return 返回到页面中
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public ModelAndView login(@Valid User user, BindingResult result,
+    public String login(@Valid User user, BindingResult result,
                               String userLoginId, String userLoginPwd,
                               Model model, String rememberMe, String checkCode,
                               HttpServletResponse response, HttpServletRequest request) {
-
         if (result.hasErrors()) {
             result.getFieldError().getDefaultMessage();
-            return new ModelAndView("register");
+            return "register";
         } else {
             //msg将错误信息反馈给登陆界面
             String msg;
             //将cookie值存在时间设置为20s是为了之后测试方便
-            final int maxTimeCookie = 20;
+            final int maxTimeCookie = 200;
             Cookie cookieId = new Cookie("cookieId", userLoginId);
             Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
             cookieId.setMaxAge(maxTimeCookie);
@@ -120,11 +119,11 @@ public class UserController {
                     if (message.toString().equals("0")) {
                         msg = "账号未注册";
                         model.addAttribute("msgId", msg);
-                        return new ModelAndView("login");
+                        return "login";
                     } else {
                         msg = "密码错误";
                         model.addAttribute("msgPwd", msg);
-                        return new ModelAndView("login");
+                        return "login";
                     }
                 } else {
                     //将用户账号信息存入session中，方便之后通过session来调用用户信息
@@ -132,16 +131,16 @@ public class UserController {
                     if ("yes".equals(rememberMe)) {
                         response.addCookie(cookiePwd);
                     }
-                    return new ModelAndView("index");
+                    return "index";
                 }
             } else if (checkCode == "") {
                 msg = "请输入验证码";
                 model.addAttribute("msgCode", msg);
-                return new ModelAndView("login");
+                return "login";
             } else {
                 msg = "验证码错误";
                 model.addAttribute("msgCode", msg);
-                return new ModelAndView("login");
+                return "login";
             }
         }
     }
@@ -169,7 +168,7 @@ public class UserController {
      * @param user                封装了用户输入的账号密码信息
      * @param bindingResult       jsr303判断用户输入数据时候合法，获取不合法错误
      * @param userLoginPwdConfirm 用户输入的确认密码，判断两次密码输入是否相同
-     * @param model 带回错误信息
+     * @param model               带回错误信息
      * @return 根据判断，返回到不同界面
      */
     @RequestMapping("/register")
@@ -186,6 +185,7 @@ public class UserController {
             //输入数据中有不合法的字符
             return new ModelAndView("register", map);
         } else {
+
             int confirm = userService.registerConfirm(user.getUserLoginId());
             if (confirm == 0) {
                 if (user.getUserLoginPwd().equals(userLoginPwdConfirm)) {

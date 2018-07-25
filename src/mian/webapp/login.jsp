@@ -50,7 +50,7 @@
                 <ul>
                     <li>
                         <label for="User" class="icon user-icon"></label>
-                        <input value="" name="userLoginId" id="UserName" placeholder="用户名/Email/手机"
+                        <input value="${sessionScope.sessionAccount.userLoginId}" name="userLoginId" id="UserName" placeholder="用户名/Email/手机"
                                class="validate-input user-name" onfocus="if(value=='用户名/Email/手机'){value='';}"
                                onblur="if(value==''){value='用户名/Email/手机'}" type="text" style="width: 80%;">
                         <span class="mb-4" style="color: red"> ${msgId}</span>
@@ -61,7 +61,7 @@
                     </li>
                     <li>
                         <label for="password" class="icon password-icon"></label>
-                        <input name="userLoginPwd" id="Password" placeholder="请输入登录密码" class="validate-input"
+                        <input value="${sessionScope.sessionAccount.userLoginPwd}" name="userLoginPwd" id="Password" placeholder="请输入登录密码" class="validate-input"
                                type="password" style="width: 80%;">
                         <span class="mb-4" style="color: red"> ${msgPwd}</span>
                     </li>

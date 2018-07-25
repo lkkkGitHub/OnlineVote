@@ -3,6 +3,8 @@ package pojo;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 用户类
  */
@@ -10,7 +12,6 @@ public class User {
     /**
      * 用户id，主键，自增
      */
-    @NotEmpty
     private Long userId;
     /**
      * 用户名
@@ -25,17 +26,17 @@ public class User {
     /**
      * 用户年龄
      */
-    @NotEmpty
+    @NotNull
     private Long userAge;
     /**
      * 用户登陆账号
      */
-    @NotEmpty(message = "账号不能为空")
+    @NotNull(message = "账号不能为空")
     private String userLoginId;
     /**
      * 用户登陆密码
      */
-    @NotEmpty(message = "密码不能为空")
+    @NotNull(message = "密码不能为空")
     private String userLoginPwd;
 
     /**

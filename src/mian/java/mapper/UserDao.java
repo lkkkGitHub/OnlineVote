@@ -14,9 +14,9 @@ public interface UserDao {
     User login(String userLoginId);
 
     /**
-     *
-     * @param user
-     * @return
+     * 注册，插入用户信息的，密码账号信息
+     * @param user 封装了账号密码信息
+     * @return 返回影响的行数
      */
     int register(User user);
 }
