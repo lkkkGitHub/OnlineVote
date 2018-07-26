@@ -34,6 +34,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     ${sessionScope.sessionAccount.userLoginId} <a href="user/exit">注销</a>
+                                    <a href="vote/createVote">创建投票</a>
                                 </c:otherwise>
                             </c:choose>
                         </p>

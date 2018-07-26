@@ -1,10 +1,13 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +18,6 @@ import tools.DrawPictures;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,14 +36,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    /**
-//     * 将客户端空白输入传入""转为null
-//     * @param binder 不知道
-//     */
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder) {
-//        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-//    }
+    /**
+     * 将客户端空白输入传入""转为null
+     *
+     * @param binder 不知道
+     */
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+    }
 
     /**
      * 生成图片验证码，传入到页面，同时添加到session中
@@ -82,30 +85,29 @@ public class UserController {
      * 不管账号、密码的正确与否,都会将账号信息存入cookie中，以便下次登陆；同时用户点击了下次自动登陆，即记住正确的密码到cookie中，
      * 账号密码正确时即传入到session中，利用session来存储用户的账号信息
      *
-     * @param userLoginId  用户输入账号id
-     * @param userLoginPwd 用户输入账号密码
-     * @param model        返回错误信息
-     * @param rememberMe   记住密码按钮确认框
-     * @param checkCode    用户输入图片验证码
-     * @param response     将账号密码存入cookie中，方便用户输入信息；
-     * @param request      获取session对象中的验证码，以及将正确的账号信息存入session中
-     * @param user         封装了用户页面输入的账号数据
-     * @param result       获取失败的信息
+     * @param model      返回错误信息
+     * @param rememberMe 记住密码按钮确认框
+     * @param checkCode  用户输入图片验证码
+     * @param response   将账号密码存入cookie中，方便用户输入信息；
+     * @param request    获取session对象中的验证码，以及将正确的账号信息存入session中
+     * @param user       封装了用户页面输入的账号数据
+     * @param result     获取失败的信息
      * @return 返回到页面中
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public String login(@Valid User user, BindingResult result,
-                              String userLoginId, String userLoginPwd,
+    public ModelAndView login(User user, BindingResult result,
                               Model model, String rememberMe, String checkCode,
                               HttpServletResponse response, HttpServletRequest request) {
+        String userLoginId = user.getUserLoginId();
+        String userLoginPwd = user.getUserLoginPwd();
         if (result.hasErrors()) {
             result.getFieldError().getDefaultMessage();
-            return "register";
+            return new ModelAndView("register");
         } else {
             //msg将错误信息反馈给登陆界面
             String msg;
             //将cookie值存在时间设置为20s是为了之后测试方便
-            final int maxTimeCookie = 20;
+            final int maxTimeCookie = 200;
             Cookie cookieId = new Cookie("cookieId", userLoginId);
             Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
             cookieId.setMaxAge(maxTimeCookie);
@@ -119,11 +121,11 @@ public class UserController {
                     if (message.toString().equals("0")) {
                         msg = "账号未注册";
                         model.addAttribute("msgId", msg);
-                        return "login";
+                        return new ModelAndView("login");
                     } else {
                         msg = "密码错误";
                         model.addAttribute("msgPwd", msg);
-                        return "login";
+                        return new ModelAndView("login");
                     }
                 } else {
                     //将用户账号信息存入session中，方便之后通过session来调用用户信息
@@ -131,16 +133,16 @@ public class UserController {
                     if ("yes".equals(rememberMe)) {
                         response.addCookie(cookiePwd);
                     }
-                    return "index";
+                    return new ModelAndView("index");
                 }
-            } else if (checkCode == "") {
+            } else if (checkCode == null) {
                 msg = "请输入验证码";
                 model.addAttribute("msgCode", msg);
-                return "login";
+                return new ModelAndView("login");
             } else {
                 msg = "验证码错误";
                 model.addAttribute("msgCode", msg);
-                return "login";
+                return new ModelAndView("login");
             }
         }
     }
@@ -169,11 +171,11 @@ public class UserController {
      * @param bindingResult       jsr303判断用户输入数据时候合法，获取不合法错误
      * @param userLoginPwdConfirm 用户输入的确认密码，判断两次密码输入是否相同
      * @param model               带回错误信息
-     * @param response 将用户输入的信息存到cookie传入到客户端中
+     * @param response            将用户输入的信息存到cookie传入到客户端中
      * @return 根据判断，返回到不同界面
      */
     @RequestMapping("/register")
-    public ModelAndView register(@Valid User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model,
+    public ModelAndView register(User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model,
                                  HttpServletResponse response) {
         String msg;
         if (bindingResult.hasErrors()) {

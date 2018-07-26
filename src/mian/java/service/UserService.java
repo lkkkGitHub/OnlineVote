@@ -61,6 +61,11 @@ public class UserService {
         }
     }
 
+    /**
+     * 注册插入用户信息
+     * @param user 封装了用户信息的user类对象
+     * @return 返回插入影响行数
+     */
     public int register(User user) {
         return userDao.register(user);
     }

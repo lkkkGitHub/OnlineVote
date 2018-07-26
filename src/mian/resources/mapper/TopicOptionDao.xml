@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.TopicOptionDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="pojo.TopicOption">
+        <result column="topicOptionId" property="topicOptionId"/>
+        <result column="topicId" property="topicId"/>
+        <result column="voteId" property="voteId"/>
+        <result column="optionId" property="optionId"/>
+    </resultMap>
+
+    <insert id="insertVote" parameterType="pojo.TopicOption" >
+        insert into tb_topicoption (topicId, optionId, voteId) VALUES (#{topicId},#{optionId},#{voteId})
+    </insert>
+</mapper>
+

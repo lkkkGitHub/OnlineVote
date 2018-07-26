@@ -7,25 +7,25 @@ public class TopicOption {
     /**
      * 题目选项连接的id，主键
      */
-    private Long topicOptionId;
+    private Integer topicOptionId;
     /**
      * 题目id，外键
      */
-    private Long topicId;
+    private Integer topicId;
     /**
      * 投票的id，外键，题目所属的投票
      */
-    private Long voteId;
+    private Integer voteId;
     /**
      * 选项id，外键
      */
-    private Long optionId;
+    private Integer optionId;
 
     /**
      * 获取题目选项连接的id
      * @return Long类型id
      */
-    public Long getTopicOptionId() {
+    public Integer getTopicOptionId() {
         return topicOptionId;
     }
 
@@ -33,7 +33,7 @@ public class TopicOption {
      * 设置主键id
      * @param topicOptionId Long对象主键id
      */
-    public void setTopicOptionId(Long topicOptionId) {
+    public void setTopicOptionId(Integer topicOptionId) {
         this.topicOptionId = topicOptionId;
     }
 
@@ -41,7 +41,7 @@ public class TopicOption {
      * 获取外键题目id
      * @return Long对象题目id
      */
-    public Long getTopicId() {
+    public Integer getTopicId() {
         return topicId;
     }
 
@@ -49,7 +49,7 @@ public class TopicOption {
      * 设置外键题目id
      * @param topicId Long对象题目id
      */
-    public void setTopicId(Long topicId) {
+    public void setTopicId(Integer topicId) {
         this.topicId = topicId;
     }
 
@@ -57,7 +57,7 @@ public class TopicOption {
      * 获取投票外键id
      * @return Long对象投票id
      */
-    public Long getVoteId() {
+    public Integer getVoteId() {
         return voteId;
     }
 
@@ -65,7 +65,7 @@ public class TopicOption {
      * 设置投票id
      * @param voteId Long对象投票id
      */
-    public void setVoteId(Long voteId) {
+    public void setVoteId(Integer voteId) {
         this.voteId = voteId;
     }
 
@@ -73,7 +73,7 @@ public class TopicOption {
      * 获取选项id
      * @return Long对象选项id
      */
-    public Long getOptionId() {
+    public Integer getOptionId() {
         return optionId;
     }
 
@@ -81,7 +81,7 @@ public class TopicOption {
      * 设置选项id
      * @param optionId Long对象id
      */
-    public void setOptionId(Long optionId) {
+    public void setOptionId(Integer optionId) {
         this.optionId = optionId;
     }
 

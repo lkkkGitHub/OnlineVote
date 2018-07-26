@@ -8,21 +8,21 @@ public class UserVote {
     /**
      * 用户投票id
      */
-    private Long userVoteId;
+    private Integer userVoteId;
     /**
      * 题目选项id，判断用户每道题的选项
      */
-    private Long topicOptionId;
+    private Integer topicOptionId;
     /**
      * 用户id，投票用户
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      * 获取用户投票id
      * @return Long对象id
      */
-    public Long getUserVoteId() {
+    public Integer getUserVoteId() {
         return userVoteId;
     }
 
@@ -30,7 +30,7 @@ public class UserVote {
      * 设置用户投票id
      * @param userVoteId Long对象用户投票
      */
-    public void setUserVoteId(Long userVoteId) {
+    public void setUserVoteId(Integer userVoteId) {
         this.userVoteId = userVoteId;
     }
 
@@ -38,7 +38,7 @@ public class UserVote {
      * 获取题目选项关联id
      * @return Long对象关联id
      */
-    public Long getTopicOptionId() {
+    public Integer getTopicOptionId() {
         return topicOptionId;
     }
 
@@ -46,7 +46,7 @@ public class UserVote {
      * 设置题目选项关联id
      * @param topicOptionId Long对象的选项题目id
      */
-    public void setTopicOptionId(Long topicOptionId) {
+    public void setTopicOptionId(Integer topicOptionId) {
         this.topicOptionId = topicOptionId;
     }
 
@@ -54,7 +54,7 @@ public class UserVote {
      * 获取投票用户id
      * @return Long对象用户id
      */
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -62,7 +62,7 @@ public class UserVote {
      * 设置用户id
      * @param userId Long对象用户id
      */
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
