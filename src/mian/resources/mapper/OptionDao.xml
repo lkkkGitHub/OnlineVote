@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.OptionDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="pojo.Option">
+        <result column="optionId" property="optionId"/>
+        <result column="optionContent" property="optionContent"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="pojo.Option" useGeneratedKeys="true" keyProperty="optionId">
+        insert into tb_option (optionContent) values (#{optionContent})
+    </insert>
+
+    <!--<insert id="insertList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="optionId">-->
+        <!--INSERT INTO tb_option (-->
+              <!--optionContent-->
+        <!--)VALUES-->
+        <!--<foreach collection="list" item="option" index="index" separator=",">-->
+            <!--(-->
+            <!--#{option.optionContent}-->
+            <!--)-->
+        <!--</foreach>-->
+    <!--</insert>-->
+
+
+</mapper>
+

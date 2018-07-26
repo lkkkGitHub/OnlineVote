@@ -33,24 +33,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!--后台页面数据验证-->
-        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.0.10.Final</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.3.2.Final</version>
+            <version>6.0.10.Fianl</version>
         </dependency>
 
         <!--引入pageHelper分页插件 -->
@@ -171,7 +157,6 @@
             <version>1.3.6</version>
         </dependency>
 
-
         <!--mybatis spring 插件 -->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -214,7 +199,6 @@
             <version>${slf4j.version}</version>
         </dependency>
         <!-- log end -->
-
         <!--servlet-->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -275,7 +259,6 @@
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
-
 
         <!-- ehcache -->
         <dependency>
@@ -344,13 +327,6 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.19</version>
-        </dependency>
-
-        <!-- dom4j读取XML -->
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
         </dependency>
 
         <!--jsp读取信息 https://mvnrepository.com/artifact/taglibs/standard -->

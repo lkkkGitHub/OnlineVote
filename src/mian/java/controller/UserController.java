@@ -18,7 +18,6 @@ import tools.DrawPictures;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +38,7 @@ public class UserController {
 
     /**
      * 将客户端空白输入传入""转为null
+     *
      * @param binder 不知道
      */
     @InitBinder
@@ -85,19 +85,19 @@ public class UserController {
      * 不管账号、密码的正确与否,都会将账号信息存入cookie中，以便下次登陆；同时用户点击了下次自动登陆，即记住正确的密码到cookie中，
      * 账号密码正确时即传入到session中，利用session来存储用户的账号信息
      *
-     * @param model        返回错误信息
-     * @param rememberMe   记住密码按钮确认框
-     * @param checkCode    用户输入图片验证码
-     * @param response     将账号密码存入cookie中，方便用户输入信息；
-     * @param request      获取session对象中的验证码，以及将正确的账号信息存入session中
-     * @param user         封装了用户页面输入的账号数据
-     * @param result       获取失败的信息
+     * @param model      返回错误信息
+     * @param rememberMe 记住密码按钮确认框
+     * @param checkCode  用户输入图片验证码
+     * @param response   将账号密码存入cookie中，方便用户输入信息；
+     * @param request    获取session对象中的验证码，以及将正确的账号信息存入session中
+     * @param user       封装了用户页面输入的账号数据
+     * @param result     获取失败的信息
      * @return 返回到页面中
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public ModelAndView login(@Valid User user, BindingResult result,
-                        Model model, String rememberMe, String checkCode,
-                        HttpServletResponse response, HttpServletRequest request) {
+    public ModelAndView login(User user, BindingResult result,
+                              Model model, String rememberMe, String checkCode,
+                              HttpServletResponse response, HttpServletRequest request) {
         String userLoginId = user.getUserLoginId();
         String userLoginPwd = user.getUserLoginPwd();
         if (result.hasErrors()) {
@@ -107,7 +107,7 @@ public class UserController {
             //msg将错误信息反馈给登陆界面
             String msg;
             //将cookie值存在时间设置为20s是为了之后测试方便
-            final int maxTimeCookie = 20;
+            final int maxTimeCookie = 200;
             Cookie cookieId = new Cookie("cookieId", userLoginId);
             Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
             cookieId.setMaxAge(maxTimeCookie);
@@ -175,7 +175,7 @@ public class UserController {
      * @return 根据判断，返回到不同界面
      */
     @RequestMapping("/register")
-    public ModelAndView register(@Valid User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model,
+    public ModelAndView register(User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model,
                                  HttpServletResponse response) {
         String msg;
         if (bindingResult.hasErrors()) {

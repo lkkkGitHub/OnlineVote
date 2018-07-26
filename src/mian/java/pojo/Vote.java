@@ -7,11 +7,11 @@ public class Vote {
     /**
      * 投票id，主键
      */
-    private Long voteId;
+    private Integer voteId;
     /**
      * 创建投票id
      */
-    private Long userId;
+    private Integer userId;
     /**
      * 投票的主题
      */
@@ -21,7 +21,7 @@ public class Vote {
      * 获取id
      * @return 返回Longid
      */
-    public Long getVoteId() {
+    public Integer getVoteId() {
         return voteId;
     }
 
@@ -29,7 +29,7 @@ public class Vote {
      * 设置投票id
      * @param voteId Long对象投票id
      */
-    public void setVoteId(Long voteId) {
+    public void setVoteId(Integer voteId) {
         this.voteId = voteId;
     }
 
@@ -37,7 +37,7 @@ public class Vote {
      * 获取用户id
      * @return Long对象用户id
      */
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -45,7 +45,7 @@ public class Vote {
      * 设置用户id
      * @param userId Long对象用户id
      */
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

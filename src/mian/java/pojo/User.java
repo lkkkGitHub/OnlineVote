@@ -1,7 +1,7 @@
 package pojo;
 
 
-import javax.validation.constraints.NotEmpty;
+
 
 /**
  * 用户类
@@ -10,31 +10,31 @@ public class User {
     /**
      * 用户id，主键，自增
      */
-    private Long userId;
+    private Integer userId;
     /**
      * 用户名
      */
-    @NotEmpty
+
     private String userName;
     /**
      * 用户性别
      */
-    @NotEmpty
+
     private String userSex;
     /**
      * 用户年龄
      */
-    @NotEmpty
-    private Long userAge;
+
+    private Integer userAge;
     /**
      * 用户登陆账号
      */
-    @NotEmpty(message = "账号不能为空")
+
     private String userLoginId;
     /**
      * 用户登陆密码
      */
-    @NotEmpty(message = "密码不能为空")
+
     private String userLoginPwd;
 
     /**
@@ -42,7 +42,7 @@ public class User {
      *
      * @return 返回Long类型的用户主键id
      */
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -51,7 +51,7 @@ public class User {
      *
      * @param userId Long对象的主键id
      */
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -96,7 +96,7 @@ public class User {
      *
      * @return 返回Long对象的年龄
      */
-    public Long getUserAge() {
+    public Integer getUserAge() {
         return userAge;
     }
 
@@ -105,7 +105,7 @@ public class User {
      *
      * @param userAge 传入Long对象的年龄
      */
-    public void setUserAge(Long userAge) {
+    public void setUserAge(Integer userAge) {
         this.userAge = userAge;
     }
 
