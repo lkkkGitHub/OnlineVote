@@ -7,7 +7,7 @@ public class Option {
     /**
      * 选项id，主键
      */
-    private Long optionId;
+    private Integer optionId;
     /**
      * 选项内容
      */
@@ -17,7 +17,7 @@ public class Option {
      * 获取选项id
      * @return Long对象的选项id
      */
-    public Long getOptionId() {
+    public Integer getOptionId() {
         return optionId;
     }
 
@@ -25,7 +25,7 @@ public class Option {
      * 设置选项id
      * @param optionId Long对象的选项id
      */
-    public void setOptionId(Long optionId) {
+    public void setOptionId(Integer optionId) {
         this.optionId = optionId;
     }
 

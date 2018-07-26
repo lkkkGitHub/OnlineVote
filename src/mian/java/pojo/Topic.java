@@ -7,7 +7,7 @@ public class Topic {
     /**
      * 自增，题目id
      */
-    private Long topicId;
+    private Integer topicId;
     /**
      * 题目内容
      */
@@ -15,13 +15,13 @@ public class Topic {
     /**
      * 题目最多能选几项
      */
-    private Long topicMax;
+    private Integer topicMax;
 
     /**
      * 获取题目id
      * @return Long对象的题目id
      */
-    public Long getTopicId() {
+    public Integer getTopicId() {
         return topicId;
     }
 
@@ -29,7 +29,7 @@ public class Topic {
      * 设置题目id
      * @param topicId Long类型的题目id
      */
-    public void setTopicId(Long topicId) {
+    public void setTopicId(Integer topicId) {
         this.topicId = topicId;
     }
 
@@ -53,7 +53,7 @@ public class Topic {
      * 获取题目最多能选几项
      * @return Long对象的最多选几项
      */
-    public Long getTopicMax() {
+    public Integer getTopicMax() {
         return topicMax;
     }
 
@@ -61,7 +61,7 @@ public class Topic {
      * 设置最大选项
      * @param topicMax Long对象的最大选项
      */
-    public void setTopicMax(Long topicMax) {
+    public void setTopicMax(Integer topicMax) {
         this.topicMax = topicMax;
     }
 
@@ -70,7 +70,7 @@ public class Topic {
         return "Topic{"
                 + "topicId=" + topicId
                 + ", topicContent='" + topicContent + '\''
-                + ", topicMax=" + topicMax
+//                + ", topicMax=" + topicMax
                 + '}';
     }
 }

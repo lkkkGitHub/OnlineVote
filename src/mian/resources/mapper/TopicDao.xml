@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.TopicDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="pojo.Topic">
+        <result column="topicId" property="topicId"/>
+        <result column="topicContent" property="topicContent"/>
+    </resultMap>
+
+
+    <!--auto generated Code-->
+    <insert id="insert" parameterType="pojo.Topic" useGeneratedKeys="true" keyProperty="topicId">
+        INSERT INTO tb_topic (topicContent, topicMax) VALUES (#{topicContent}, #{topicMax})
+    </insert>
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.topicId">-->
+        <!--INSERT INTO topic-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="pojo.topicId!=null"> `topicId`,</if>-->
+            <!--<if test="pojo.topicContent!=null"> `topicContent`,</if>-->
+        <!--</trim>-->
+        <!--VALUES-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="pojo.topicId!=null">#{pojo.topicId},</if>-->
+            <!--<if test="pojo.topicContent!=null">#{pojo.topicContent},</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<insert id="insertList">-->
+        <!--INSERT INTO topic (-->
+        <!--<include refid="all_column"/>-->
+        <!--)VALUES-->
+        <!--<foreach collection="pojos" item="pojo" index="index" separator=",">-->
+            <!--(-->
+            <!--#{pojo.topicId},-->
+            <!--#{pojo.topicContent}-->
+            <!--)-->
+        <!--</foreach>-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<update id="update">-->
+        <!--UPDATE topic-->
+        <!--<set>-->
+            <!--<if test="pojo.topicId != null"> `topicId` = #{pojo.topicId}, </if>-->
+            <!--<if test="pojo.topicContent != null"> `topicContent` = #{pojo.topicContent} </if>-->
+        <!--</set>-->
+        <!--WHERE topicId = #{pojo.topicId}-->
+    <!--</update>-->
+</mapper>
+
