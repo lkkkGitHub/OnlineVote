@@ -12,6 +12,9 @@ import pojo.TopicOption;
 import pojo.Vote;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,8 +44,9 @@ public class VoteService {
     private TopicOptionDao topicOptionDao;
 
     /**
-     * 将题目，选项，投票分别插入导题目，选项，投票表中；再将题目，选项，投票id主键加入题目选项表中进行关联；
-     * 应该启用了事务管理，发现有未插入的信息，即回滚事务
+     * 将题目，投票信息插入到表中，并且获取返回的自增id传入到各自的主键，同时将影响的行数返回分别存储再 k1 k2中
+     * 再将选项的list集合进行循环插入到表中，每次插入即返回自增id，和影响的行数；再将投票，题目，选项各个返回的主键id信息插入到题目选项关联表中
+     * 开启事务注解，判断如果每次插入的影响行数有一个不是1 即手手动抛异常，让事务回滚
      *
      * @param vote       封装了投票信息
      * @param topic      封装了题目信息
@@ -68,4 +72,28 @@ public class VoteService {
         }
     }
 
+    /**
+     * 查询投票信息，将用户id传入到用户中，连接查询创建创建该投票的用户id
+     * 同时对截止日期进行判断，获取当前时间和截至日期比较大小，当且仅当截止日期大于等于现在的日期时
+     * 才将投票的信息添加到voteList中，并返回到controller
+     * @return 查询到信息时返回list集合，未查到即返回空
+     */
+    public List<Vote> findVote() {
+        List<Vote> list = voteDao.findVote();
+        List<Vote> voteList = new ArrayList<>();
+        Calendar ca = Calendar.getInstance();
+        Date now = ca.getTime();
+        Date fu = ca.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(fu.getTime());
+        if (list == null) {
+            return null;
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(0).getDeadline().getTime() >= sqlDate.getTime()) {
+                    voteList.add(list.get(i));
+                }
+            }
+            return voteList;
+        }
+    }
 }

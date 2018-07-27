@@ -25,6 +25,16 @@
     <mvc:resources mapping="/img/**" location="/img/"/>
     <mvc:resources mapping="/slick/**" location="/slick/"/>
 
+    <!--设置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--需要拦截的controller连接-->
+            <mvc:mapping path="/vote/createVote"/>
+            <mvc:mapping path="/topicOption/findVote"/>
+            <bean class="intercept.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--配置文件上传的属性-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!--最大上传文件大小-->

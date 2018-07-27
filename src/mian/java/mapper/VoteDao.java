@@ -2,6 +2,8 @@ package mapper;
 
 import pojo.Vote;
 
+import java.util.List;
+
 
 /**
  * 投票
@@ -16,9 +18,10 @@ public interface VoteDao {
      */
     int insert(Vote vote);
 
-//    int insertSelective(@Param("pojo") Vote pojo);
-//
-//    int insertList(@Param("pojos") List<Vote> pojo);
-//
-//    int update(@Param("pojo") Vote pojo);
+    /**
+     * 联合用户表查询用户信息，将用户信息封装到user类中
+     *
+     * @return vote类
+     */
+    List<Vote> findVote();
 }
