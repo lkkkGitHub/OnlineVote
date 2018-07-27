@@ -47,7 +47,7 @@
         <span style="color: red">${msgOptionContent}</span>
     </p>
 
-    <input type="submit" value="发布投票">
+    <input type="submit" value="发布投票" class="btn btn-primary tm-btn-submit">
 </form>
 </body>
 </html>

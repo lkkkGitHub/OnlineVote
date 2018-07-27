@@ -51,7 +51,7 @@ public class VoteController {
      *
      * @return 返回到创建投票页面
      */
-    @RequestMapping(value = "createVote", method = {RequestMethod.GET})
+    @RequestMapping(value = "/createVote", method = {RequestMethod.GET})
     public ModelAndView createVote() {
         return new ModelAndView("createVote");
     }
@@ -92,7 +92,7 @@ public class VoteController {
      * @param response 向页面发送cookie值
      * @return 返回到查询显示投票页面
      */
-    @RequestMapping(value = "createVote", method = {RequestMethod.POST})
+    @RequestMapping(value = "/createVote", method = {RequestMethod.POST})
     public ModelAndView createVote(String option1, String option2, String option3, String option4, Vote vote,
                                    Topic topic, HttpServletRequest request, Model model, HttpServletResponse response) {
         final int minCookieAge = 0;

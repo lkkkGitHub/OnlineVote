@@ -37,7 +37,14 @@
                 <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
                     <div class="tm-site-header">
                         <p>
-                            <a href="user/login">登录</a>
+                            <c:choose>
+                                <c:when test="${sessionScope.sessionAccount==null}">
+                                    <a href="user/login">登录</a>
+                                </c:when>
+                                <c:otherwise>
+                                    ${sessionScope.sessionAccount.userLoginId} <a href="user/exit">注销</a>
+                                </c:otherwise>
+                            </c:choose>
                         </p>
                         <h1 class="mb-4">POP design</h1>
                         <img src="img/underline.png" class="img-fluid mb-4">
@@ -63,10 +70,18 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                <iframe src="vote/createVote" scrolling="no" frameborder="0"
-                                                        height="60%">
+                                                <p>
+                                                    <c:choose>
+                                                        <c:when test="${sessionScope.sessionAccount==null}">
+                                                            <a href="user/login">请登陆</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <iframe src="vote/createVote" scrolling="no" frameborder="0" height="60%">
 
-                                                </iframe>
+                                                            </iframe>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </p>
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                 <p>Donec eu lectus ligula. Aenean pulvinar dolor et massa lacinia
