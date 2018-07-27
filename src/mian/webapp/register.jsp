@@ -45,14 +45,6 @@
             <script src="js/nvc.js"></script>
             <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
             <script type="text/javascript" src="js/jquery.pseudo.js"></script>
-            <!--[if lte IE 9]>
-            <script src="/js/jquery.placeholder.min.js"></script>
-            <script>
-                $(function () {
-                    $('input[placeholder]').placeholder();
-                });
-            </script>
-            <![endif]-->
             <div id="register-box" class="validate-box">
 
 
@@ -79,6 +71,7 @@
                                 <label for="register-password" class="icon password-icon"></label>
                                 <input value="${cookie.registerCookiePwd.value}" name="userLoginPwd" maxlength="20" id="Register1_Password"
                                        class="validate-input" placeholder="6~20位字母、数字或特殊符号" value="" type="password">
+                                <span class="mb-4" style="color: red">${msgPwd}</span>
                                 <label style="display: none;" id="divPasswordPromptInfo" for="register-password"
                                        class="error blue">6~20位字母、数字或特殊符号。</label>
                                 <label style="display: none;" id="divPasswordErrorInfo" for="register-password"
@@ -90,7 +83,7 @@
                                 <label for="register-password" class="icon password-icon"></label>
                                 <input name="userLoginPwdConfirm" value="${cookie.registerCookieConPwd.value}" maxlength="20" id="Register1_Password"
                                        class="validate-input" placeholder="确认密码" type="password">
-                                <span class="mb-4" style="color: red">${msgPwdConfirm}</span>
+                                <span class="mb-4" style="color: red">${msgPwdCon}</span>
                                 <label style="display: none;" id="divPasswordPromptInfo" for="register-password"
                                        class="error blue">6~20位字母、数字或特殊符号。</label>
                                 <label style="display: none;" id="divPasswordErrorInfo" for="register-password"
