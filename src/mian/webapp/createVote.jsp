@@ -46,7 +46,11 @@
         <input type="text" name="option4" value="${cookie.cookieOption4.value}"/>
         <span style="color: red">${msgOptionContent}</span>
     </p>
-
+    <p>
+        截至天数
+        <input type="text" name="deadlineTime" value="${cookie.cookieDeadline.value}"/>
+        <span style="color: red">${msgDeadline}</span>
+    </p>
     <input type="submit" value="发布投票" class="btn btn-primary tm-btn-submit">
 </form>
 </body>

@@ -1,5 +1,7 @@
 package pojo;
 
+import java.sql.Date;
+
 /**
  * 投票类
  */
@@ -16,6 +18,26 @@ public class Vote {
      * 投票的主题
      */
     private String topic;
+    /**
+     * 投票截止日期
+     */
+    private Date deadline;
+
+    /**
+     * 获取截至日期
+     * @return 截止日期
+     */
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    /**
+     * 设置截至日期
+     * @param deadline 截止日期
+     */
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
 
     /**
      * 获取id
@@ -71,6 +93,7 @@ public class Vote {
                 + "voteId=" + voteId
                 + ", userId=" + userId
                 + ", topic='" + topic + '\''
+                + ", deadline=" + deadline
                 + '}';
     }
 }

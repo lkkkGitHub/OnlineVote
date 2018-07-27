@@ -10,7 +10,7 @@
 
 
     <insert id="insert" parameterType="pojo.Vote" keyProperty="voteId" useGeneratedKeys="true">
-        insert into tb_vote (userId, topic) values (#{userId}, #{topic})
+        insert into tb_vote (userId, topic, deadline) values (#{userId}, #{topic}, #{deadline})
     </insert>
     <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
     <!--<insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.voteId">-->
