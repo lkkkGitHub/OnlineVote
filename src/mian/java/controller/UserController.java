@@ -91,21 +91,31 @@ public class UserController {
      * @param response   将账号密码存入cookie中，方便用户输入信息；
      * @param request    获取session对象中的验证码，以及将正确的账号信息存入session中
      * @param user       封装了用户页面输入的账号数据
-     * @param result     获取失败的信息
      * @return 返回到页面中
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public ModelAndView login(User user, BindingResult result,
-                              Model model, String rememberMe, String checkCode,
+    public ModelAndView login(User user, Model model, String rememberMe, String checkCode,
                               HttpServletResponse response, HttpServletRequest request) {
         String userLoginId = user.getUserLoginId();
         String userLoginPwd = user.getUserLoginPwd();
-        if (result.hasErrors()) {
-            result.getFieldError().getDefaultMessage();
-            return new ModelAndView("register");
+//        if (result.hasErrors()) {
+//            result.getFieldError().getDefaultMessage();
+//            return new ModelAndView("register")
+        //msg将错误信息反馈给登陆界面
+        String msg;
+        if (user.getUserLoginId() == null) {
+            msg = "请输入账号";
+            model.addAttribute("msgId", msg);
+            return new ModelAndView("login");
+        } else if (user.getUserLoginPwd() == null) {
+            msg = "请输入密码";
+            model.addAttribute("msgPwd", msg);
+            return new ModelAndView("login");
+        } else if (checkCode == null) {
+            msg = "请输入验证码";
+            model.addAttribute("msgCode", msg);
+            return new ModelAndView("login");
         } else {
-            //msg将错误信息反馈给登陆界面
-            String msg;
             //将cookie值存在时间设置为20s是为了之后测试方便
             final int maxTimeCookie = 200;
             Cookie cookieId = new Cookie("cookieId", userLoginId);
@@ -135,10 +145,6 @@ public class UserController {
                     }
                     return new ModelAndView("index");
                 }
-            } else if (checkCode == null) {
-                msg = "请输入验证码";
-                model.addAttribute("msgCode", msg);
-                return new ModelAndView("login");
             } else {
                 msg = "验证码错误";
                 model.addAttribute("msgCode", msg);
@@ -168,26 +174,37 @@ public class UserController {
      * 同时根据dao接口中返回的数值判断信息是否插入成功，插入成功即跳转到成功界面；失败跳到失败界面
      *
      * @param user                封装了用户输入的账号密码信息
-     * @param bindingResult       jsr303判断用户输入数据时候合法，获取不合法错误
      * @param userLoginPwdConfirm 用户输入的确认密码，判断两次密码输入是否相同
      * @param model               带回错误信息
      * @param response            将用户输入的信息存到cookie传入到客户端中
      * @return 根据判断，返回到不同界面
      */
     @RequestMapping("/register")
-    public ModelAndView register(User user, BindingResult bindingResult, String userLoginPwdConfirm, Model model,
+    public ModelAndView register(User user, String userLoginPwdConfirm, Model model,
                                  HttpServletResponse response) {
         String msg;
-        if (bindingResult.hasErrors()) {
-            Map<String, Object> map = new HashMap<>();
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError fieldError : errors) {
-                System.out.println("错误的字段名：" + fieldError.getField());
-                System.out.println("错误信息：" + fieldError.getDefaultMessage());
-                map.put(fieldError.getField(), fieldError.getDefaultMessage());
-            }
-            //输入数据中有不合法的字符
-            return new ModelAndView("register", map);
+//        if (bindingResult.hasErrors()) {
+//            Map<String, Object> map = new HashMap<>();
+//            List<FieldError> errors = bindingResult.getFieldErrors();
+//            for (FieldError fieldError : errors) {
+//                System.out.println("错误的字段名：" + fieldError.getField());
+//                System.out.println("错误信息：" + fieldError.getDefaultMessage());
+//                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+//            }
+//            //输入数据中有不合法的字符
+//            return new ModelAndView("register", map);
+        if (user.getUserLoginId() == null) {
+            msg = "请输入账号";
+            model.addAttribute("msgId", msg);
+            return new ModelAndView("register");
+        } else if (user.getUserLoginPwd() == null) {
+            msg = "请输入密码";
+            model.addAttribute("msgPwd", msg);
+            return new ModelAndView("register");
+        } else if (userLoginPwdConfirm == null) {
+            msg = "请重新输入一次密码";
+            model.addAttribute("msgPwdCon", msg);
+            return new ModelAndView("register");
         } else {
             //cookie在服务器中存储的时间 20表示测试
             final int maxCookieAge = 20;
@@ -213,7 +230,7 @@ public class UserController {
                     }
                 } else {
                     msg = "密码不一致，请重新输入";
-                    model.addAttribute("msgPwdConfirm", msg);
+                    model.addAttribute("msgPwdCon", msg);
                     return new ModelAndView("register");
                 }
             } else {
