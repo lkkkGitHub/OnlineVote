@@ -19,4 +19,11 @@ public interface UserDao {
      * @return 返回影响的行数
      */
     int register(User user);
+
+    /**
+     * 根据用户id查询用户信息，只返回用户个人信息，账号密码等不返回
+     * @param userId 用户id
+     * @return 封装了信息的user
+     */
+    User selectUserByUserId(Integer userId);
 }

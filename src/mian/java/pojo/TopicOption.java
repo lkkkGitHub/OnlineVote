@@ -1,5 +1,7 @@
 package pojo;
 
+import java.util.List;
+
 /**
  * 题目选项关联类，同时关联投票
  */
@@ -20,6 +22,27 @@ public class TopicOption {
      * 选项id，外键
      */
     private Integer optionId;
+
+    /**
+     * 投票对题目选项为一对多
+     */
+    private List<Vote> voteList;
+
+    /**
+     * 获取投票list
+     * @return 投票list
+     */
+    public List<Vote> getVoteList() {
+        return voteList;
+    }
+
+    /**
+     * 设置投票list
+     * @param voteList 投票list
+     */
+    public void setVoteList(List<Vote> voteList) {
+        this.voteList = voteList;
+    }
 
     /**
      * 获取题目选项连接的id

@@ -44,6 +44,7 @@ public class VoteService {
      * 将题目，投票信息插入到表中，并且获取返回的自增id传入到各自的主键，同时将影响的行数返回分别存储再 k1 k2中
      * 再将选项的list集合进行循环插入到表中，每次插入即返回自增id，和影响的行数；再将投票，题目，选项各个返回的主键id信息插入到题目选项关联表中
      * 开启事务注解，判断如果每次插入的影响行数有一个不是1 即手手动抛异常，让事务回滚
+     *
      * @param vote       封装了投票信息
      * @param topic      封装了题目信息
      * @param optionList 封装了选项信息
@@ -68,4 +69,16 @@ public class VoteService {
         }
     }
 
+    /**
+     * 查询投票信息，将用户id传入到用户中，连接查询创建创建该投票的用户id
+     * @return 查询到信息时返回list集合，未查到即返回空
+     */
+    public List<Vote> findVote() {
+        List<Vote> list = voteDao.findVote();
+        if (list == null) {
+            return null;
+        } else {
+            return list;
+        }
+    }
 }

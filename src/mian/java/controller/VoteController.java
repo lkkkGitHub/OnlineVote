@@ -208,4 +208,21 @@ public class VoteController {
         response.addCookie(cookieTopicContent);
         return new ModelAndView("createSuccess");
     }
+
+    /**
+     * 查询投票信息封装成list，再将用户id---userId传入到user表中查询创建该投票的信息，封装到Vote类中的user属性中
+     * @param model 向页面传错误参数，以及传list集合信息
+     * @return 返回到页面
+     */
+    @RequestMapping("/findVote")
+    public String findVote(Model model) {
+        List<Vote> voteList = voteService.findVote();
+        if (voteList == null) {
+            model.addAttribute("当前没有投票信息", "msgNullVote");
+            return "printVote";
+        } else {
+            model.addAttribute("votes", voteList);
+            return "printVote";
+        }
+    }
 }

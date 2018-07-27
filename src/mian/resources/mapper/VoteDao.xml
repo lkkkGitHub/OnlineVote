@@ -8,49 +8,16 @@
         <result column="topic" property="topic"/>
     </resultMap>
 
+    <resultMap id="findUser" type="pojo.Vote" extends="AllColumnMap">
+        <association property="user" column="userId" select="mapper.UserDao.selectUserByUserId"/>
+    </resultMap>
 
     <insert id="insert" parameterType="pojo.Vote" keyProperty="voteId" useGeneratedKeys="true">
         insert into tb_vote (userId, topic, deadline) values (#{userId}, #{topic}, #{deadline})
     </insert>
-    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
-    <!--<insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.voteId">-->
-        <!--INSERT INTO vote-->
-        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
-            <!--<if test="pojo.voteId!=null"> `voteId`,</if>-->
-            <!--<if test="pojo.userId!=null"> `userId`,</if>-->
-            <!--<if test="pojo.topic!=null"> `topic`,</if>-->
-        <!--</trim>-->
-        <!--VALUES-->
-        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
-            <!--<if test="pojo.voteId!=null">#{pojo.voteId},</if>-->
-            <!--<if test="pojo.userId!=null">#{pojo.userId},</if>-->
-            <!--<if test="pojo.topic!=null">#{pojo.topic},</if>-->
-        <!--</trim>-->
-    <!--</insert>-->
 
-    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
-    <!--<insert id="insertList">-->
-        <!--INSERT INTO vote (-->
-        <!--<include refid="all_column"/>-->
-        <!--)VALUES-->
-        <!--<foreach collection="pojos" item="pojo" index="index" separator=",">-->
-            <!--(-->
-            <!--#{pojo.voteId},-->
-            <!--#{pojo.userId},-->
-            <!--#{pojo.topic}-->
-            <!--)-->
-        <!--</foreach>-->
-    <!--</insert>-->
-
-    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
-    <!--<update id="update">-->
-        <!--UPDATE vote-->
-        <!--<set>-->
-            <!--<if test="pojo.voteId != null"> `voteId` = #{pojo.voteId}, </if>-->
-            <!--<if test="pojo.userId != null"> `userId` = #{pojo.userId}, </if>-->
-            <!--<if test="pojo.topic != null"> `topic` = #{pojo.topic} </if>-->
-        <!--</set>-->
-        <!--WHERE voteId = #{pojo.voteId}-->
-    <!--</update>-->
+    <select id="findVote" resultMap="findUser">
+        select * from tb_vote
+    </select>
 </mapper>
 

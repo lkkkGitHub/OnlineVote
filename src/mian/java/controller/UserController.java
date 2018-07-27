@@ -114,16 +114,18 @@ public class UserController {
             return new ModelAndView("login");
         } else {
             //将cookie值存在时间设置为20s是为了之后测试方便
-            final int maxTimeCookie = 200;
+            final int maxTimeCookie = 300;
+            final int minTimeCookie = 0;
             Cookie cookieId = new Cookie("cookieId", userLoginId);
             Cookie cookiePwd = new Cookie("cookiePwd", userLoginPwd);
             cookieId.setMaxAge(maxTimeCookie);
             cookiePwd.setMaxAge(maxTimeCookie);
+            response.addCookie(cookieId);
+            response.addCookie(cookiePwd);
             if ((checkCode.toUpperCase()).equals(request.getSession().getAttribute("SessionPictures"))) {
                 //从controller传入到service中，service根据查询到的信息进行赋值,带回信息返回给controller处理
                 StringBuffer message = new StringBuffer();
                 User user1 = userService.login(userLoginId, userLoginPwd, message);
-                response.addCookie(cookieId);
                 if (user1 == null) {
                     if (message.toString().equals("0")) {
                         msg = "账号未注册";
@@ -138,6 +140,9 @@ public class UserController {
                     //将用户账号信息存入session中，方便之后通过session来调用用户信息
                     session.setAttribute("sessionAccount", user1);
                     if ("yes".equals(rememberMe)) {
+                        response.addCookie(cookiePwd);
+                    } else {
+                        cookiePwd.setMaxAge(minTimeCookie);
                         response.addCookie(cookiePwd);
                     }
                     return new ModelAndView("index");
