@@ -10,13 +10,22 @@
 <head>
     <base href="<%=basePath%>">
     <title></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">  <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>                       <!-- http://kenwheeler.github.io/slick/ -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
+    <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <!-- http://kenwheeler.github.io/slick/ -->
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
     <link rel="stylesheet" href="css/tooplate-style.css">
-    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
+    <script>document.documentElement.className = "js";
+    var supportsCssVars = function () {
+        var e, t = document.createElement("style");
+        return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e
+    };
+    supportsCssVars() || alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
 
 </head>
 <body>
@@ -34,7 +43,6 @@
                                 </c:when>
                                 <c:otherwise>
                                     ${sessionScope.sessionAccount.userLoginId} <a href="user/exit">注销</a>
-                                    <a href="vote/createVote">创建投票</a>
                                 </c:otherwise>
                             </c:choose>
                         </p>
@@ -51,7 +59,7 @@
                                 <div class="product">
                                     <div class="tm-nav-link">
                                         <i class="fas fa-home fa-3x tm-nav-icon"></i>
-                                        <span class="tm-nav-text">Welcome</span>
+                                        <span class="tm-nav-text">创建投票</span>
                                         <div class="product__bg"></div>
                                     </div>
                                     <div class="product__description">
@@ -62,11 +70,18 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                <img src="img/welcome-1.jpg" class="img-fluid mb-3">
-                                                <p>You can feel free to use this template for your websites. Please tell
-                                                    your friends about Tooplate website. Thank you.</p>
-                                                <p>Vivamus placerat in nunc eget volutpat. Etiam tincidunt blandit
-                                                    sapien, sed posuere enim. Ut eget ornare lectus.</p>
+                                                <p>
+                                                    <%--<c:choose>--%>
+                                                        <%--<c:when test="${sessionScope.sessionAccount==null}">--%>
+                                                            <%--<a href="user/login">请登陆</a>--%>
+                                                        <%--</c:when>--%>
+                                                        <%--<c:otherwise>--%>
+                                                            <iframe src="vote/createVote" scrolling="no" frameborder="0"
+                                                                    height="75%" width="100%">
+                                                            </iframe>
+                                                        <%--</c:otherwise>--%>
+                                                    <%--</c:choose>--%>
+                                                </p>
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                 <p>Donec eu lectus ligula. Aenean pulvinar dolor et massa lacinia
@@ -86,7 +101,7 @@
                                 <div class="product">
                                     <div class="tm-nav-link">
                                         <i class="fas fa-users fa-3x tm-nav-icon"></i>
-                                        <span class="tm-nav-text">Our Team</span>
+                                        <span class="tm-nav-text">投票</span>
                                         <div class="product__bg"></div>
                                     </div>
                                     <div class="product__description">
@@ -98,17 +113,11 @@
                                             </div>
                                             <div class="row tm-reverse-sm">
                                                 <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                                                    <p class="mb-4">Vestibulum aliquet, arcu accumsan lobortis bibendum,
-                                                        justo velit efficitur lorem, at pulvinar mi justo nec lacus.
-                                                        Nullam et libero aliquet, luctus nunc sit amet, tincidunt
-                                                        ligula. Sed finibus ante sed tortor cursus, nec malesuada lectus
-                                                        interdum.</p>
-                                                    <p class="mb-4">Sed ex turpis, vulputate in efficitur id, lobortis
-                                                        eget nibh. Pellentesque maximus ipsum eget velit imperdiet
-                                                        sodales. Suspendisse in blandit mi.</p>
-                                                    <p class="mb-5">Pellentesque finibus felis risus, ut malesuada felis
-                                                        viverra at. Quisque accumsan in mi non hendrerit.</p>
-                                                    <a href="#" class="btn tm-btn-gray">Read More</a>
+                                                    <p class="mb-4">
+                                                        <iframe src="vote/findVote" scrolling="no"
+                                                                frameborder="1" height="60%" width="100%">
+                                                        </iframe>
+                                                    </p>
                                                 </div>
                                                 <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-lg-0 mb-sm-4 mb-4">
                                                     <img src="img/team.jpg" class="img-fluid">

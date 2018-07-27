@@ -19,5 +19,9 @@
     <insert id="register" parameterType="pojo.User" useGeneratedKeys="true">
         insert into tb_user (userLoginId,userLoginPwd) values (#{userLoginId},#{userLoginPwd})
     </insert>
+
+    <select id="selectUserByUserId" parameterType="java.lang.Integer" resultMap="AllColumnMap">
+        select userSex,userName,userAge from tb_user where userId = #{value}
+    </select>
 </mapper>
 
