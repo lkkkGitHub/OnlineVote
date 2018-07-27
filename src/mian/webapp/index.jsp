@@ -51,7 +51,7 @@
                                 <div class="product">
                                     <div class="tm-nav-link">
                                         <i class="fas fa-home fa-3x tm-nav-icon"></i>
-                                        <span class="tm-nav-text">Welcome</span>
+                                        <span class="tm-nav-text">创建投票</span>
                                         <div class="product__bg"></div>
                                     </div>
                                     <div class="product__description">
@@ -62,11 +62,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                <img src="img/welcome-1.jpg" class="img-fluid mb-3">
-                                                <p>You can feel free to use this template for your websites. Please tell
-                                                    your friends about Tooplate website. Thank you.</p>
-                                                <p>Vivamus placerat in nunc eget volutpat. Etiam tincidunt blandit
-                                                    sapien, sed posuere enim. Ut eget ornare lectus.</p>
+                                                <iframe src="vote/createVote" scrolling="no" frameborder="0" height="60%">
+
+                                                </iframe>
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                 <p>Donec eu lectus ligula. Aenean pulvinar dolor et massa lacinia

@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +16,7 @@ import tools.DrawPictures;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author lk
@@ -91,11 +87,12 @@ public class UserController {
      * @param response   将账号密码存入cookie中，方便用户输入信息；
      * @param request    获取session对象中的验证码，以及将正确的账号信息存入session中
      * @param user       封装了用户页面输入的账号数据
+     * @param session    获取session对象
      * @return 返回到页面中
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
     public ModelAndView login(User user, Model model, String rememberMe, String checkCode,
-                              HttpServletResponse response, HttpServletRequest request) {
+                              HttpServletResponse response, HttpServletRequest request, HttpSession session) {
         String userLoginId = user.getUserLoginId();
         String userLoginPwd = user.getUserLoginPwd();
 //        if (result.hasErrors()) {
@@ -139,7 +136,7 @@ public class UserController {
                     }
                 } else {
                     //将用户账号信息存入session中，方便之后通过session来调用用户信息
-                    request.getSession().setAttribute("sessionAccount", user1);
+                    session.setAttribute("sessionAccount", user1);
                     if ("yes".equals(rememberMe)) {
                         response.addCookie(cookiePwd);
                     }
