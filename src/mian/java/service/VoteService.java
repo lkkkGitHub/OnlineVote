@@ -12,6 +12,9 @@ import pojo.TopicOption;
 import pojo.Vote;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,14 +74,26 @@ public class VoteService {
 
     /**
      * 查询投票信息，将用户id传入到用户中，连接查询创建创建该投票的用户id
+     * 同时对截止日期进行判断，获取当前时间和截至日期比较大小，当且仅当截止日期大于等于现在的日期时
+     * 才将投票的信息添加到voteList中，并返回到controller
      * @return 查询到信息时返回list集合，未查到即返回空
      */
     public List<Vote> findVote() {
         List<Vote> list = voteDao.findVote();
+        List<Vote> voteList = new ArrayList<>();
+        Calendar ca = Calendar.getInstance();
+        Date now = ca.getTime();
+        Date fu = ca.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(fu.getTime());
         if (list == null) {
             return null;
         } else {
-            return list;
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(0).getDeadline().getTime() >= sqlDate.getTime()) {
+                    voteList.add(list.get(i));
+                }
+            }
+            return voteList;
         }
     }
 }

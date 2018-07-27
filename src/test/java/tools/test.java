@@ -2,9 +2,10 @@ package tools;
 
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static org.apache.commons.lang3.time.DateUtils.parseDate;
 
 /**
  * @author lk
@@ -26,8 +27,17 @@ public class test {
     }
 
     @Test
-    public void time1 () {
-
+    public void compareDate() {
+        int x;
+        Date date1 = new Date(2018-7-29);
+        Date date2 = new Date(2017-8-1);
+        if (date1.getTime() > date2.getTime())
+            x=1;
+        else if (date1.getTime() < date2.getTime())
+            x=2;
+        else
+            x=3;
+        System.out.println(x);
     }
 
 }
