@@ -95,7 +95,8 @@ public class VoteController {
     @RequestMapping(value = "createVote", method = {RequestMethod.POST})
     public ModelAndView createVote(String option1, String option2, String option3, String option4, Vote vote,
                                    Topic topic, HttpServletRequest request, Model model, HttpServletResponse response) {
-        final int maxCookidAge = 300;
+        final int minCookieAge = 0;
+        final int maxCookieAge = 300;
         final int checkConfig = 4;
         int check = 0;
         Cookie cookieTopicContent = new Cookie("cookieTopicContent", topic.getTopicContent());
@@ -104,12 +105,12 @@ public class VoteController {
         Cookie cookieOption2 = new Cookie("cookieOption2", option2);
         Cookie cookieOption3 = new Cookie("cookieOption3", option3);
         Cookie cookieOption4 = new Cookie("cookieOption4", option4);
-        cookieOption1.setMaxAge(maxCookidAge);
-        cookieOption2.setMaxAge(maxCookidAge);
-        cookieOption3.setMaxAge(maxCookidAge);
-        cookieOption4.setMaxAge(maxCookidAge);
-        cookieTopic.setMaxAge(maxCookidAge);
-        cookieTopicContent.setMaxAge(maxCookidAge);
+        cookieOption1.setMaxAge(maxCookieAge);
+        cookieOption2.setMaxAge(maxCookieAge);
+        cookieOption3.setMaxAge(maxCookieAge);
+        cookieOption4.setMaxAge(maxCookieAge);
+        cookieTopic.setMaxAge(maxCookieAge);
+        cookieTopicContent.setMaxAge(maxCookieAge);
         response.addCookie(cookieOption1);
         response.addCookie(cookieOption2);
         response.addCookie(cookieOption3);
@@ -171,6 +172,18 @@ public class VoteController {
         if (check == checkConfig) {
             voteService.insert(vote, topic, optionList);
         }
+        cookieOption1.setMaxAge(minCookieAge);
+        cookieOption2.setMaxAge(minCookieAge);
+        cookieOption3.setMaxAge(minCookieAge);
+        cookieOption4.setMaxAge(minCookieAge);
+        cookieTopic.setMaxAge(minCookieAge);
+        cookieTopicContent.setMaxAge(minCookieAge);
+        response.addCookie(cookieOption1);
+        response.addCookie(cookieOption2);
+        response.addCookie(cookieOption3);
+        response.addCookie(cookieOption4);
+        response.addCookie(cookieTopic);
+        response.addCookie(cookieTopicContent);
         return new ModelAndView("createSuccess");
     }
 }

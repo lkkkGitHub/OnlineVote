@@ -10,13 +10,22 @@
 <head>
     <base href="<%=basePath%>">
     <title></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">  <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>                       <!-- http://kenwheeler.github.io/slick/ -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
+    <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <!-- http://kenwheeler.github.io/slick/ -->
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
     <link rel="stylesheet" href="css/tooplate-style.css">
-    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
+    <script>document.documentElement.className = "js";
+    var supportsCssVars = function () {
+        var e, t = document.createElement("style");
+        return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e
+    };
+    supportsCssVars() || alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
 
 </head>
 <body>
@@ -28,15 +37,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
                     <div class="tm-site-header">
                         <p>
-                            <c:choose>
-                                <c:when test="${sessionScope.sessionAccount==null}">
-                                    <a href="user/login">登录</a>
-                                </c:when>
-                                <c:otherwise>
-                                    ${sessionScope.sessionAccount.userLoginId} <a href="user/exit">注销</a>
-                                    <a href="vote/createVote">创建投票</a>
-                                </c:otherwise>
-                            </c:choose>
+                            <a href="user/login">登录</a>
                         </p>
                         <h1 class="mb-4">POP design</h1>
                         <img src="img/underline.png" class="img-fluid mb-4">
@@ -62,7 +63,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                <iframe src="vote/createVote" scrolling="no" frameborder="0" height="60%">
+                                                <iframe src="vote/createVote" scrolling="no" frameborder="0"
+                                                        height="60%">
 
                                                 </iframe>
                                             </div>
