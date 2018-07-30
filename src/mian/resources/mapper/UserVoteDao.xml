@@ -15,8 +15,8 @@
         )VALUES
         <foreach collection="list" item="userVote" index="index" separator=",">
             (
-            #{userVote.topicOptionId},
-            #{userVote.userId}
+            #{userVote.userId},
+            #{userVote.topicOptionId}
             )
         </foreach>
     </insert>

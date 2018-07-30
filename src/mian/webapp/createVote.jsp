@@ -14,7 +14,7 @@
 <div style="color: aliceblue">
     <form action="vote/createVote" method="post">
         <p>
-            输入投票标题
+            输入投票主题
             <input type="text" name="topic" value="${cookie.cookieTopic.value}"/>
             <span style="color: red">${msgTopic}</span>
         </p>
