@@ -29,8 +29,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <!--需要拦截的controller连接-->
-            <mvc:mapping path="/vote/createVote"/>
-            <mvc:mapping path="/topicOption/findVote"/>
+            <mvc:mapping path="/vote/*"/>
+            <mvc:mapping path="/topicOption/*"/>
             <bean class="intercept.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

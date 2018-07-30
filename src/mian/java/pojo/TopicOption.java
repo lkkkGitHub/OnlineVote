@@ -29,6 +29,47 @@ public class TopicOption {
     private List<Vote> voteList;
 
     /**
+     * 一对一关联题目信息
+     */
+    private Topic topic;
+    /**
+     * 一对一关联选项信息
+     */
+    private Option option;
+
+    /**
+     * 获取题目信息
+     * @return 题目信息
+     */
+    public Topic getTopic() {
+        return topic;
+    }
+
+    /**
+     * 设置题目信息
+     * @param topic 题目信息
+     */
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
+    /**
+     * 获取选项信息
+     * @return 选项信息
+     */
+    public Option getOption() {
+        return option;
+    }
+
+    /**
+     * 设置选项信息
+     * @param option 选项信息
+     */
+    public void setOption(Option option) {
+        this.option = option;
+    }
+
+    /**
      * 获取投票list
      * @return 投票list
      */

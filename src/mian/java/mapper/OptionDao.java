@@ -19,5 +19,10 @@ public interface OptionDao {
 //     */
 //    List<Option> insertList(List<Option> optionList);
 
-
+    /**
+     * 查询选项通过选项id optionId，封装到选项表中
+     * @param optionId 题目选项dao中查询到的optionId连接查询
+     * @return 返回option类封装了信息
+     */
+    Option findOptionById(Integer optionId);
 }

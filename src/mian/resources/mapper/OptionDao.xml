@@ -11,6 +11,10 @@
         insert into tb_option (optionContent) values (#{optionContent})
     </insert>
 
+    <select id="findOptionById" parameterType="java.lang.Integer" resultMap="AllColumnMap">
+        select * from tb_option where optionId = #{value}
+    </select>
+
     <!--<insert id="insertList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="optionId">-->
         <!--INSERT INTO tb_option (-->
               <!--optionContent-->

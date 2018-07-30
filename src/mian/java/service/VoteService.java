@@ -73,13 +73,15 @@ public class VoteService {
     }
 
     /**
-     * 查询投票信息，将用户id传入到用户中，连接查询创建创建该投票的用户id
-     * 同时对截止日期进行判断，获取当前时间和截至日期比较大小，当且仅当截止日期大于等于现在的日期时
-     * 才将投票的信息添加到voteList中，并返回到controller
+     * 查询所有状态为 1 （表示未到截止日期） 的投票，封装到list集合中；
+     * 再将用户id传入到用户表中连接查询创建投票的用户信息封装到vote类中的user属性中；
+     * 同时对截至日期进行判断，将现在的时间和截止日期同时变换成字符串类型进行比较：
+     *     截至日期大于等于现在的时间即添加到voteList中，返回到页面
+     *     小于现在的时间，即对它的状态进行修改，改成 0 （到达截至日期）
      * @return 查询到信息时返回list集合，未查到即返回空
      */
     public List<Vote> findVote() {
-        List<Vote> list = voteDao.findVote();
+        List<Vote> list = voteDao.findVoteStateOne();
         List<Vote> voteList = new ArrayList<>();
         Calendar ca = Calendar.getInstance();
         Date now = ca.getTime();
@@ -89,8 +91,11 @@ public class VoteService {
             return null;
         } else {
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(0).getDeadline().getTime() >= sqlDate.getTime()) {
+                if (list.get(i).getDeadline().getTime() >= sqlDate.getTime()) {
                     voteList.add(list.get(i));
+                } else {
+                    list.get(i).setState(0);
+                    voteDao.updateState(list.get(i));
                 }
             }
             return voteList;
