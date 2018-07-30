@@ -2,6 +2,8 @@ package mapper;
 
 import pojo.TopicOption;
 
+import java.util.List;
+
 /**
  * 题目选项dao
  */
@@ -13,4 +15,12 @@ public interface TopicOptionDao {
      * @return 返回影响行数，以及返回到实体类中的主键id
      */
     int insertVote(TopicOption topicOption);
+
+    /**
+     * 通过投票id 查询投票得题目，选项id，再将两个id传入到各自得dao
+     * 中查询题目，选项的内容返回到TopicOption类中的属性中，再通过list集合返回信息
+     * @param voteId 投票id
+     * @return 封装信息的list集合
+     */
+    List<TopicOption> findTopicOption(Integer voteId);
 }

@@ -28,7 +28,16 @@ public class VoteDaoTest extends SpringMybatisTest {
 
     @Test
     public void findVote() {
-        List<Vote> vote = voteDao.findVote();
+        List<Vote> vote = voteDao.findVoteStateOne();
+        System.out.println(vote);
+    }
+
+    @Test
+    public void updateState() {
+        Vote vote = new Vote();
+        vote.setVoteId(5);
+        vote.setState(0);
+        voteDao.updateState(vote);
         System.out.println(vote);
     }
 }

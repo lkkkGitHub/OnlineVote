@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-<p>创建成功</p>
+<p style="color: #def4f2">成功</p>
 </body>
 </html>

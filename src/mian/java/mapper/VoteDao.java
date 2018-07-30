@@ -23,5 +23,12 @@ public interface VoteDao {
      *
      * @return vote类
      */
-    List<Vote> findVote();
+    List<Vote> findVoteStateOne();
+
+    /**
+     * 根据传入的投票信息，更新投票信息中的状态
+     * @param vote 封装了投票信息的vote
+     * @return 返回影响的行数
+     */
+    int updateState(Vote vote);
 }

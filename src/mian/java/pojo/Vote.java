@@ -23,6 +23,27 @@ public class Vote {
      */
     private Date deadline;
     /**
+     * 投票的状态 默认值为1 表示开启投票 0 表示结束投票
+     */
+    private Integer state;
+
+    /**
+     * 获取状态
+     * @return 状态信息
+     */
+    public Integer getState() {
+        return state;
+    }
+
+    /**
+     * 设置状态
+     * @param state 状态信息
+     */
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    /**
      * 用户信息，关联查询创建该投票的用户
      */
     private User user;
@@ -114,6 +135,7 @@ public class Vote {
                 + ", userId=" + userId
                 + ", topic='" + topic + '\''
                 + ", deadline=" + deadline
+                + ", state=" + state
                 + '}';
     }
 }

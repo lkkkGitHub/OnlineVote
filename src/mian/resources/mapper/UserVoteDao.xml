@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.UserVoteDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="pojo.UserVote">
+        <result column="userVoteId" property="userVoteId"/>
+        <result column="topicOptionId" property="topicOptionId"/>
+        <result column="userId" property="userId"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO tb_uservote (
+           userId,topicOptionId
+        )VALUES
+        <foreach collection="list" item="userVote" index="index" separator=",">
+            (
+            #{userVote.topicOptionId},
+            #{userVote.userId}
+            )
+        </foreach>
+    </insert>
+
+</mapper>
+

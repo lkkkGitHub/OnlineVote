@@ -9,8 +9,17 @@
         <result column="optionId" property="optionId"/>
     </resultMap>
 
+    <resultMap id="findTopicOption" type="pojo.TopicOption" extends="AllColumnMap">
+        <association property="topic" column="topicId" select="mapper.TopicDao.findTopicById"/>
+        <association property="option" column="optionId" select="mapper.OptionDao.findOptionById"/>
+    </resultMap>
+
     <insert id="insertVote" parameterType="pojo.TopicOption" >
         insert into tb_topicoption (topicId, optionId, voteId) VALUES (#{topicId},#{optionId},#{voteId})
     </insert>
+
+    <select id="findTopicOption" parameterType="java.lang.Integer" resultMap="findTopicOption">
+        select * from tb_topicoption where voteId = #{value}
+    </select>
 </mapper>
 
