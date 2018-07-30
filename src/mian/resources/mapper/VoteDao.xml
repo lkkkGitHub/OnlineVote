@@ -16,8 +16,12 @@
         insert into tb_vote (userId, topic, deadline) values (#{userId}, #{topic}, #{deadline})
     </insert>
 
-    <select id="findVote" resultMap="findUser">
-        select * from tb_vote
+    <select id="findVoteStateOne" resultMap="findUser">
+        select * from tb_vote where state = 1
     </select>
+
+    <update id="updateState" parameterType="pojo.Vote">
+        update tb_vote set state = #{state} where voteId = #{voteId}
+    </update>
 </mapper>
 

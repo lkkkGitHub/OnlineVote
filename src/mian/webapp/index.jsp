@@ -115,7 +115,7 @@
                                                 <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                                     <p class="mb-4">
                                                         <iframe src="vote/findVote" scrolling="no"
-                                                                frameborder="1" height="60%" width="100%">
+                                                                frameborder="0" height="60%" width="100%">
                                                         </iframe>
                                                     </p>
                                                 </div>
