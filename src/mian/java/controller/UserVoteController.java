@@ -43,24 +43,26 @@ public class UserVoteController {
      */
     @RequestMapping("/voting")
     public ModelAndView voting(String[] topicOptionId, HttpServletRequest request, Model model) {
-        List<UserVote> list = new ArrayList<>();
-        TopicOption topicOption = (TopicOption) request.getSession().getAttribute("topicOption");
-        User user = (User) request.getSession().getAttribute("sessionAccount");
-        for (String s : topicOptionId) {
-            UserVote userVote = new UserVote();
-            userVote.setUserId(user.getUserId());
-            userVote.setTopicOptionId(Integer.parseInt(s));
-            list.add(userVote);
-        }
-        if (list.size() == 0) {
+        if (topicOptionId == null) {
             model.addAttribute("msgVoting", "请投票");
             return new ModelAndView("voting");
-        } else if (topicOption.getTopic().getTopicMax() != list.size()) {
-            model.addAttribute("msgVoting", "请完成所有投票");
-            return new ModelAndView("voting");
         } else {
-            userVoteService.insertList(list);
-            return new ModelAndView("createSuccess");
+            List<UserVote> list = new ArrayList<>();
+            TopicOption topicOption = (TopicOption) request.getSession().getAttribute("topicOption");
+            User user = (User) request.getSession().getAttribute("sessionAccount");
+            for (String s : topicOptionId) {
+                UserVote userVote = new UserVote();
+                userVote.setUserId(user.getUserId());
+                userVote.setTopicOptionId(Integer.parseInt(s));
+                list.add(userVote);
+            }
+            if (topicOption.getTopic().getTopicMax() != list.size()) {
+                model.addAttribute("msgVoting", "请完成所有投票");
+                return new ModelAndView("voting");
+            } else {
+                userVoteService.insertList(list);
+                return new ModelAndView("createSuccess");
+            }
         }
     }
 }
