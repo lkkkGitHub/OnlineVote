@@ -21,5 +21,9 @@
     <select id="findTopicOption" parameterType="java.lang.Integer" resultMap="findTopicOption">
         select * from tb_topicoption where voteId = #{value}
     </select>
+
+    <select id="findTopicOptionByTopicOptionId" parameterType="java.lang.Integer" resultMap="AllColumnMap">
+        SELECT * FROM tb_topicoption WHERE topicOptionId = #{value}
+    </select>
 </mapper>
 

@@ -45,9 +45,10 @@ public class UserVoteController {
     public ModelAndView voting(String[] topicOptionId, HttpServletRequest request, Model model) {
         List<UserVote> list = new ArrayList<>();
         TopicOption topicOption = (TopicOption) request.getSession().getAttribute("topicOption");
+        User user = (User) request.getSession().getAttribute("sessionAccount");
         for (String s : topicOptionId) {
             UserVote userVote = new UserVote();
-            userVote.setUserId(((User) request.getSession().getAttribute("sessionAccount")).getUserId());
+            userVote.setUserId(user.getUserId());
             userVote.setTopicOptionId(Integer.parseInt(s));
             list.add(userVote);
         }

@@ -8,6 +8,10 @@
         <result column="userId" property="userId"/>
     </resultMap>
 
+    <resultMap id="ctxTopicOption" type="pojo.UserVote" extends="AllColumnMap">
+        <association property="topicOption" column="topicOptionId"
+                     select="mapper.TopicOptionDao.findTopicOptionByTopicOptionId"/>
+    </resultMap>
     <!--auto generated Code-->
     <insert id="insertList" parameterType="java.util.List">
         INSERT INTO tb_uservote (
@@ -21,5 +25,8 @@
         </foreach>
     </insert>
 
+    <select id="findUserVotedByUserId" parameterType="java.lang.Integer" resultMap="ctxTopicOption">
+        SELECT * FROM tb_uservote WHERE userId = #{value}
+    </select>
 </mapper>
 

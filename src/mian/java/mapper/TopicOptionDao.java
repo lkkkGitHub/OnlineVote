@@ -23,4 +23,6 @@ public interface TopicOptionDao {
      * @return 封装信息的list集合
      */
     List<TopicOption> findTopicOption(Integer voteId);
+
+    List<TopicOption> findTopicOptionByTopicOptionId(Integer topicOptionId);
 }

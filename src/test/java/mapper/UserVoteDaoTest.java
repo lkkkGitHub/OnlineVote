@@ -2,14 +2,11 @@ package mapper;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import pojo.User;
 import pojo.UserVote;
 import tools.SpringMybatisTest;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author lk
@@ -39,5 +36,11 @@ public class UserVoteDaoTest extends SpringMybatisTest {
 
         userVoteDao.insertList(list);
         System.out.println(list);
+    }
+
+    @Test
+    public void findUserVotedByUserId() {
+        List<UserVote> userVote = userVoteDao.findUserVotedByUserId(1);
+        System.out.println(userVote);
     }
 }
