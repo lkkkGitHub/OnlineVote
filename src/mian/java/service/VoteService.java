@@ -90,12 +90,12 @@ public class VoteService {
         if (list == null) {
             return null;
         } else {
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getDeadline().getTime() >= sqlDate.getTime()) {
-                    voteList.add(list.get(i));
+            for (Vote vote:list) {
+                if (vote.getDeadline().getTime() >= sqlDate.getTime()) {
+                    voteList.add(vote);
                 } else {
-                    list.get(i).setState(0);
-                    voteDao.updateState(list.get(i));
+                    vote.setState(0);
+                    voteDao.updateState(vote);
                 }
             }
             return voteList;
