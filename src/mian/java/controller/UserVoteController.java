@@ -10,7 +10,7 @@ import pojo.User;
 import pojo.UserVote;
 import service.UserVoteService;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,17 +37,18 @@ public class UserVoteController {
      * 如果以上判断都满足再将用户投的票添加到service中进行插入
      *
      * @param topicOptionId 页面复选框的用户投票信息
-     * @param session       获取用户信息 userId 以及题目信息 topicMax 最多选项
+     * @param request       获取session中的用户信息 userId 以及题目信息 topicMax 最多选项
      * @param model         根据list集合的size以及topicMax的大小返回不同的错误信息
      * @return 根据list集合的size以及topicMax的大小返回不同的错误信息
      */
     @RequestMapping("/voting")
-    public ModelAndView voting(String[] topicOptionId, HttpSession session, Model model) {
+    public ModelAndView voting(String[] topicOptionId, HttpServletRequest request, Model model) {
         List<UserVote> list = new ArrayList<>();
-        TopicOption topicOption = (TopicOption) session.getAttribute("topicOption");
+        TopicOption topicOption = (TopicOption) request.getSession().getAttribute("topicOption");
+        User user = (User) request.getSession().getAttribute("sessionAccount");
         for (String s : topicOptionId) {
             UserVote userVote = new UserVote();
-            userVote.setUserId(((User) session.getAttribute("sessionAccount")).getUserId());
+            userVote.setUserId(user.getUserId());
             userVote.setTopicOptionId(Integer.parseInt(s));
             list.add(userVote);
         }

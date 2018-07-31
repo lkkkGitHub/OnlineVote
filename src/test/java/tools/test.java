@@ -23,7 +23,7 @@ public class test {
         ca.add(Calendar.DAY_OF_MONTH, i);
         Date fu = ca.getTime();
         java.sql.Date sqlDate = new java.sql.Date(fu.getTime());
-        System.out.println(sqlDate);
+        System.out.println(ca);
     }
 
     @Test
