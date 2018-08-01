@@ -1,6 +1,8 @@
 package mapper;
 
 import pojo.UserVote;
+import tools.OptionCount;
+import tools.VoteCount;
 
 import java.util.List;
 
@@ -25,4 +27,18 @@ public interface UserVoteDao {
      * @return 封装了题目选项信息，以及用户id的UserVote类型的list集合
      */
     List<UserVote> findUserVotedByUserId(Integer userId);
+
+    /**
+     * 查询
+     * @param voteId
+     * @return
+     */
+    VoteCount findVotedUserNum(Integer voteId);
+
+    /**
+     *
+     * @param voteId
+     * @return
+     */
+    List<OptionCount> findOptionNum(Integer voteId);
 }

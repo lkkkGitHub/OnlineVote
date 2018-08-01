@@ -61,7 +61,7 @@ public class UserVoteController {
                 return new ModelAndView("voting");
             } else {
                 userVoteService.insertList(list);
-                return new ModelAndView("createSuccess");
+                return new ModelAndView("forward:/topicOption/findTopicOption");
             }
         }
     }

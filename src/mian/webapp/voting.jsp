@@ -18,7 +18,20 @@
         <p>最多能选：${topicOptions.get(0).topic.topicMax}</p>
         <c:forEach var="topicOption" items="${topicOptions}">
             <p><input type="checkbox" name="topicOptionId" value="${topicOption.topicOptionId}">
-                    ${topicOption.option.optionContent}</p>
+                    ${topicOption.option.optionContent}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>
+                    <c:forEach items="${voteCount.countList}" var="count">
+                        <c:if test="${topicOption.optionId == count.optionId}">
+                            ${count.optionNum / voteCount.countPeople * 100} %
+                        </c:if>
+                    </c:forEach>
+                </span>
+            </p>
         </c:forEach>
         <span style="color: red">${msgVoting}</span>
         <input type="submit" value="提交">

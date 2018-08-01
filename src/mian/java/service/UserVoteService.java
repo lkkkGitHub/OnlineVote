@@ -3,8 +3,11 @@ package service;
 import mapper.UserVoteDao;
 import org.springframework.stereotype.Service;
 import pojo.UserVote;
+import tools.OptionCount;
+import tools.VoteCount;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,5 +46,23 @@ public class UserVoteService {
         } else {
             return list;
         }
+    }
+
+    public VoteCount findVotedUserNum(Integer voteId) {
+       VoteCount voteCount = null;
+       voteCount = userVoteDao.findVotedUserNum(voteId);
+       if (voteCount == null) {
+           voteCount = new VoteCount();
+           OptionCount optionCount = new OptionCount();
+           optionCount.setOptionId(0);
+           optionCount.setOptionNum(0);
+           List<OptionCount> list = new ArrayList<>();
+           for (int i = 0; i < 4; i++) {
+               list.add(optionCount);
+           }
+           voteCount.setCountPeople(0);
+           voteCount.setCountList(list);
+       }
+       return voteCount;
     }
 }
