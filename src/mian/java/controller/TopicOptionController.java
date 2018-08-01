@@ -35,6 +35,7 @@ public class TopicOptionController {
      */
     @Autowired
     private UserVoteService userVoteService;
+
     /**
      * 第一次进入方法（通过链接进来，url链接后边跟着voteId进来），
      * 判断voteId的值，是否为空，不为空
@@ -68,5 +69,14 @@ public class TopicOptionController {
         model.addAttribute("topicOptions", list);
         model.addAttribute("voteCount", voteCount);
         return new ModelAndView("voting");
+    }
+
+    @RequestMapping("/findVotedTopicOption")
+    public ModelAndView findVotedTopicOption(Vote vote, Model model, HttpSession session, HttpServletRequest request) {
+        List<TopicOption> list = topicOptionService.findTopicOption(vote.getVoteId());
+        VoteCount voteCount = userVoteService.findVotedUserNum(vote.getVoteId());
+        model.addAttribute("topicOptions", list);
+        model.addAttribute("voteCount", voteCount);
+        return new ModelAndView("voted");
     }
 }

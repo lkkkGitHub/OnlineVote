@@ -19,7 +19,8 @@ public interface VoteDao {
     int insert(Vote vote);
 
     /**
-     * 联合用户表查询用户信息，将用户信息封装到user类中
+     * 查询状态为 1 （未到截至时间的投票）
+     * 联合用户表查询投票信息，将用户信息封装到user类中
      *
      * @return vote类
      */
@@ -31,4 +32,11 @@ public interface VoteDao {
      * @return 返回影响的行数
      */
     int updateState(Vote vote);
+
+    /**
+     * 联合用户表查询投票信息，将用户信息封装到user类中
+     *
+     * @return vote类
+     */
+    List<Vote> findAllVote();
 }

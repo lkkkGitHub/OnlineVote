@@ -101,4 +101,12 @@ public class VoteService {
             return voteList;
         }
     }
+
+    /**
+     * 查询所有投票信息
+     * @return 返回携带了用户信息的全部投票信息
+     */
+    public List<Vote> findAllVote() {
+        return voteDao.findAllVote();
+    }
 }

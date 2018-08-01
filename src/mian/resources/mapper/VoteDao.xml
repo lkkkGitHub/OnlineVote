@@ -20,6 +20,10 @@
         select * from tb_vote where state = 1
     </select>
 
+    <select id="findAllVote" resultMap="findUser">
+        select * from tb_vote
+    </select>
+
     <update id="updateState" parameterType="pojo.Vote">
         update tb_vote set state = #{state} where voteId = #{voteId}
     </update>
