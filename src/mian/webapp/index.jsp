@@ -133,7 +133,7 @@
                                 <div class="product">
                                     <div class="tm-nav-link">
                                         <i class="fas fa-handshake fa-3x tm-nav-icon"></i>
-                                        <span class="tm-nav-text">Our Work</span>
+                                        <span class="tm-nav-text">我参与过的投票</span>
                                         <div class="product__bg"></div>
                                     </div>
                                     <div class="product__description">
@@ -145,10 +145,9 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-12">
-                                                    <p>Aliquam interdum, nisl sed faucibus tempor, massa velit laoreet
-                                                        ipsum, et faucibus sapien magna at enim. Suspendisse a dictum
-                                                        tortor, vel rhoncus libero. Integer at lacus velit. Nullam
-                                                        dapibus venenatis placerat.</p>
+                                                    <iframe src="vote/findVoted" scrolling="no" frameborder="0"
+                                                            height="75%" width="100%">
+                                                    </iframe>
                                                 </div>
                                             </div>
                                             <div class="row">

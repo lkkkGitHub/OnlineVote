@@ -8,7 +8,7 @@
         <result column="userId" property="userId"/>
     </resultMap>
 
-    <resultMap id="ctxTopicOption" type="pojo.UserVote" extends="AllColumnMap">
+    <resultMap id="ctxTopicOptionId" type="pojo.UserVote" extends="AllColumnMap">
         <association property="topicOption" column="topicOptionId"
                      select="mapper.TopicOptionDao.findTopicOptionByTopicOptionId"/>
     </resultMap>
@@ -37,7 +37,7 @@
         </foreach>
     </insert>
 
-    <select id="findUserVotedByUserId" parameterType="java.lang.Integer" resultMap="ctxTopicOption">
+    <select id="findUserVotedByUserId" parameterType="java.lang.Integer" resultMap="ctxTopicOptionId">
         SELECT * FROM tb_uservote WHERE userId = #{value}
     </select>
 

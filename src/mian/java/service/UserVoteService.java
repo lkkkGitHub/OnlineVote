@@ -48,6 +48,11 @@ public class UserVoteService {
         }
     }
 
+    /**
+     * 查询，参与该投票的总人数，以及该投票中的主键id、选中该选项的人数
+     * @param voteId 投票id
+     * @return 返回封装了信息的实体类
+     */
     public VoteCount findVotedUserNum(Integer voteId) {
        VoteCount voteCount = null;
        voteCount = userVoteDao.findVotedUserNum(voteId);
