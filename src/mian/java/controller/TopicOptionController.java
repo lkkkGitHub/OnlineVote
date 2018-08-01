@@ -35,6 +35,7 @@ public class TopicOptionController {
      */
     @Autowired
     private UserVoteService userVoteService;
+
     /**
      * 通过页面连接获取到投票的 voteId，传入到service中查询到题目选项信息，以list集合返回
      * 同时将本次的题目选项类（TopicOption）传入到session中名字为（topicOptions）以便投票时，获取投票的最大选项
@@ -63,5 +64,14 @@ public class TopicOptionController {
         model.addAttribute("topicOptions", list);
         model.addAttribute("voteCount", voteCount);
         return new ModelAndView("voting");
+    }
+
+    @RequestMapping("/findVotedTopicOption")
+    public ModelAndView findVotedTopicOption(Vote vote, Model model, HttpSession session, HttpServletRequest request) {
+        List<TopicOption> list = topicOptionService.findTopicOption(vote.getVoteId());
+        VoteCount voteCount = userVoteService.findVotedUserNum(vote.getVoteId());
+        model.addAttribute("topicOptions", list);
+        model.addAttribute("voteCount", voteCount);
+        return new ModelAndView("voted");
     }
 }
