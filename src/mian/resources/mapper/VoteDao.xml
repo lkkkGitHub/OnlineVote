@@ -20,8 +20,18 @@
         select * from tb_vote where state = 1
     </select>
 
+    <select id="findAllVote" resultMap="findUser">
+        select * from tb_vote
+    </select>
+
     <update id="updateState" parameterType="pojo.Vote">
         update tb_vote set state = #{state} where voteId = #{voteId}
     </update>
+
+    <select id="findUserVoted" parameterType="java.lang.Integer" resultMap="findUser">
+        SELECT * FROM tb_vote WHERE voteId IN
+        (SELECT voteId FROM tb_topicoption WHERE topicOptionId IN
+        (SELECT topicOptionId FROM tb_uservote WHERE userId = #{value})GROUP BY voteId)
+    </select>
 </mapper>
 
