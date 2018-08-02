@@ -76,8 +76,9 @@ public class VoteService {
      * 查询所有状态为 1 （表示未到截止日期） 的投票，封装到list集合中；
      * 再将用户id传入到用户表中连接查询创建投票的用户信息封装到vote类中的user属性中；
      * 同时对截至日期进行判断，将现在的时间和截止日期同时变换成字符串类型进行比较：
-     *     截至日期大于等于现在的时间即添加到voteList中，返回到页面
-     *     小于现在的时间，即对它的状态进行修改，改成 0 （到达截至日期）
+     * 截至日期大于等于现在的时间即添加到voteList中，返回到页面
+     * 小于现在的时间，即对它的状态进行修改，改成 0 （到达截至日期）
+     *
      * @return 查询到信息时返回list集合，未查到即返回空
      */
     public List<Vote> findVote() {
@@ -90,7 +91,7 @@ public class VoteService {
         if (list == null) {
             return null;
         } else {
-            for (Vote vote:list) {
+            for (Vote vote : list) {
                 if (vote.getDeadline().getTime() >= sqlDate.getTime()) {
                     voteList.add(vote);
                 } else {
@@ -102,11 +103,26 @@ public class VoteService {
         }
     }
 
+//    /**
+//     * 查询所有投票信息
+//     * @return 返回携带了用户信息的全部投票信息
+//     */
+//    public List<Vote> findAllVote() {
+//        return voteDao.findAllVote();
+//    }
+
     /**
-     * 查询所有投票信息
-     * @return 返回携带了用户信息的全部投票信息
+     * 根据用户id查询用户增进参与过的投票具体信息，以及创建该投票的用户信息
+     *
+     * @param userId 用户id
+     * @return 根据查询信息，是否为返回list集合，为空即返回null
      */
-    public List<Vote> findAllVote() {
-        return voteDao.findAllVote();
+    public List<Vote> findUserVoted(Integer userId) {
+        List<Vote> list = voteDao.findUserVoted(userId);
+        if (list.size() == 0) {
+            return null;
+        } else {
+            return list;
+        }
     }
 }

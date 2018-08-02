@@ -21,6 +21,10 @@
     <typeAliases>
         <package name="pojo"/>
     </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
     <!--
     <typeHandlers></typeHandlers>
     类型处理器  完成jdbc类型和Java类型的转换

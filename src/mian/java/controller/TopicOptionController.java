@@ -71,8 +71,14 @@ public class TopicOptionController {
         return new ModelAndView("voting");
     }
 
+    /**
+     * 查询根据投票id查询题目信息，选项信息；并查询每个投票题目的参与人数，以及每个选项的选择人数
+     * @param vote 获取投票id
+     * @param model 向页面发送信息
+     * @return 返回到页面
+     */
     @RequestMapping("/findVotedTopicOption")
-    public ModelAndView findVotedTopicOption(Vote vote, Model model, HttpSession session, HttpServletRequest request) {
+    public ModelAndView findVotedTopicOption(Vote vote, Model model) {
         List<TopicOption> list = topicOptionService.findTopicOption(vote.getVoteId());
         VoteCount voteCount = userVoteService.findVotedUserNum(vote.getVoteId());
         model.addAttribute("topicOptions", list);

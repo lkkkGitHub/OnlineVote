@@ -82,7 +82,7 @@
                     <div id="trRemember" class="remember-box">
                         <span class="automatic-box pull-left">
                             <span class="login_checkbox centertxt"><input id="RememberMe" name="rememberMe" value="yes"
-                                                                          type="checkbox"></span>下次自动登录
+                                                                          type="checkbox"></span>记住密码
                         </span>
                         <a id="PasswordRecoveryLink" class="get-back pull-right"
                            href="https://www.wjx.cn/register/forgetpassword.aspx">忘记用户名/密码？</a>

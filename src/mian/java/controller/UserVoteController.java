@@ -58,7 +58,7 @@ public class UserVoteController {
             }
             if (topicOption.getTopic().getTopicMax() != list.size()) {
                 model.addAttribute("msgVoting", "请完成所有投票");
-                return new ModelAndView("voting");
+                return new ModelAndView("forward:/topicOption/findTopicOption");
             } else {
                 userVoteService.insertList(list);
                 return new ModelAndView("forward:/topicOption/findTopicOption");
