@@ -145,36 +145,12 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-12">
-                                                    <iframe src="vote/findVoted" scrolling="no" frameborder="0"
+                                                    <iframe src="vote/findUserVoted" scrolling="no" frameborder="0"
                                                             height="75%" width="100%">
                                                     </iframe>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="p-sm-4 p-2 tm-img-container">
-                                                        <div class="tm-img-slider" id="tmImgSlider">
-                                                            <img src="img/gallery-img-01-tn.jpg" alt="Image"
-                                                                 class="tm-slider-img">
-                                                            <img src="img/gallery-img-02-tn.jpg" alt="Image"
-                                                                 class="tm-slider-img">
-                                                            <img src="img/gallery-img-03-tn.jpg" alt="Image"
-                                                                 class="tm-slider-img">
-                                                            <img src="img/gallery-img-04-tn.jpg" alt="Image"
-                                                                 class="tm-slider-img">
-                                                            <img src="img/gallery-img-05-tn.jpg" alt="Image"
-                                                                 class="tm-slider-img">
-                                                            <img src="img/gallery-img-06-tn.jpg" alt="Image"
-                                                                 class="tm-slider-img">
-                                                        </div>
-                                                    </div>
-                                                    <p class="mb-4">
-                                                        <iframe src="vote/findUserVoted" scrolling="no"
-                                                                frameborder="0" height="60%" width="100%">
-                                                        </iframe>
-                                                    </p>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

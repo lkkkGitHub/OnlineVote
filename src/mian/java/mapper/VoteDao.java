@@ -28,6 +28,7 @@ public interface VoteDao {
 
     /**
      * 根据传入的投票信息，更新投票信息中的状态
+     *
      * @param vote 封装了投票信息的vote
      * @return 返回影响的行数
      */
@@ -39,4 +40,13 @@ public interface VoteDao {
      * @return vote类
      */
     List<Vote> findAllVote();
+
+    /**
+     * 根据用户id，查询用户参与过的投票，以及投票的具体信息
+     * 并且链接查询创建该投票的用户信息
+     *
+     * @param userId 用户id
+     * @return 返回封装了投票信息的list集合
+     */
+    List<Vote> findUserVoted(Integer userId);
 }

@@ -12,9 +12,8 @@
     <title></title>
 </head>
 <body>
-<div style="width: 100%">
-    <span style="color: red">${msgNullVote}</span>
-    <c:forEach items="${votes}" var="vote">
+<div>
+    <c:forEach items="${pageInfo}" var="vote">
         <a href="topicOption/findTopicOption?voteId=${vote.voteId}" style="color: #def4f2">
             <div style="float: left;width: 50%;">
                 <p>投票主题：${vote.topic}</p>
