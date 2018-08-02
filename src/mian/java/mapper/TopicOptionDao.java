@@ -24,5 +24,10 @@ public interface TopicOptionDao {
      */
     List<TopicOption> findTopicOption(Integer voteId);
 
+    /**
+     * 根据题目选项id来查询题目投票信息
+     * @param topicOptionId 题目选项id
+     * @return 返回封装了信息的TopicOption的list集合
+     */
     List<TopicOption> findTopicOptionByTopicOptionId(Integer topicOptionId);
 }

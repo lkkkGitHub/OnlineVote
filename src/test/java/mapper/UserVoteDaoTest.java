@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import pojo.UserVote;
 import tools.SpringMybatisTest;
+import tools.VoteCount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +43,10 @@ public class UserVoteDaoTest extends SpringMybatisTest {
     public void findUserVotedByUserId() {
         List<UserVote> userVote = userVoteDao.findUserVotedByUserId(1);
         System.out.println(userVote);
+    }
+
+    @Test
+    public void findVotedUserNum() {
+        VoteCount count = userVoteDao.findVotedUserNum(19);
     }
 }
