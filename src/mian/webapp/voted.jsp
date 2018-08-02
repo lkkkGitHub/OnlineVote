@@ -18,7 +18,7 @@
     <p>多选：${topicOptions.get(0).topic.topicMax}</p>
     <c:forEach var="topicOption" items="${topicOptions}">
         <p>
-            ${topicOption.option.optionContent}
+                ${topicOption.option.optionContent}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,6 +33,7 @@
                 </span>
         </p>
     </c:forEach>
+    <a href="vote/findUserVoted">返回</a>
 </div>
 
 </body>
