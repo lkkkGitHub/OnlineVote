@@ -36,6 +36,7 @@
         <span style="color: red">${msgVoting}</span>
         <input type="submit" value="提交">
     </form>
+    <a href="vote/findVote">返回</a>
 </div>
 </body>
 </html>

@@ -45,7 +45,7 @@ public class UserVoteController {
     public ModelAndView voting(String[] topicOptionId, HttpServletRequest request, Model model) {
         if (topicOptionId == null) {
             model.addAttribute("msgVoting", "请投票");
-            return new ModelAndView("voting");
+            return new ModelAndView("forward:/topicOption/findTopicOption");
         } else {
             List<UserVote> list = new ArrayList<>();
             TopicOption topicOption = (TopicOption) request.getSession().getAttribute("topicOption");
